@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Diabetes</title>
+    <link type="text/css" rel="stylesheet" href="css/fonts/iconfont.css"/>
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<div id="container"></div>
+<template id="template1">
+    <div class="main">
+        <div id="scrollTopPos" class="scroll_top_pos"></div>
+        <div :class="['con', {up: isUp}]"
+             :style="{'transform': 'translateY(' + (150) + 'px)', 'min-height': (isUp ? screenHeight : (screenHeight - 150)) + 'px'}">
+            <header id="header">
+                <div class="header">
+                    <a href="#"><img src="css/images/logo.png" alt="" style="width: 64px;height: 64px;"/></a>
+                    <ul class="nav">
+                        <li><a href="index.html">HOME</a></li>
+                        <li><a href="calc.html">CALCULATE</a></li>
+                        <li><a href="about.html">ABOUT DIABETES</a></li>
+                        <li><a href="news.html">NEWS</a></li>
+                        <li><a href="map.html">MAP</a></li>
+                        <li class="cur"><a href="#">RECIPE</a></li>
+                    </ul>
+                </div>
+            </header>
+            <div id="map" class="map" :style="{height: (isUp ? (screenHeight-130): (screenHeight - 280)) + 'px'}"></div>
+        </div>
+    </div>
+</template>
+<script src="js/jquery.min.js"></script>
+<script src="js/vue.min.js"></script>
+<script>
+    $(function () {
+        new Vue({
+            el: '#container',
+            template: '#template1',
+            data: {
+                video: '',
+                screenHeight: 0,
+                isUp: true
+            },
+            mounted() {
+                this.init();
+            },
+            methods: {
+                init() {
+                    this.screenHeight = document.documentElement.clientHeight;
+                    console.log(this.screenHeight);
+                    this.video = 'video/video.mp4'
+                },
+                changeUp() {
+                    this.isUp = !this.isUp;
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

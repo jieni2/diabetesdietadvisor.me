@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Diabetes</title>
+<link type="text/css" rel="stylesheet" href="css/fonts/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="css/iview.css">
+<link type="text/css" rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div id="container"></div>
+<template id="template1">
+	<div class="main">
+		<div id="scrollTopPos" class="scroll_top_pos"></div>
+		<div :class="['con', {up: isUp}]" :style="{'transform': 'translateY(' + (150) + 'px)', 'min-height': (isUp ? screenHeight : (screenHeight - 150)) + 'px'}">
+			<header id="header">
+				<div class="header">
+                    <a href="#"><img src="css/images/logo.png" alt="" style="width: 64px;height: 64px;" /></a>
+					<ul class="nav">
+                        <li><a href="index.html">HOME</a></li>
+                        <li><a href="calc.html">CALCULATE</a></li>
+                        <li><a href="about.html">ABOUT DIABETES</a></li>
+                        <li class="cur"><a href="#">NEWS</a></li>
+                        <li><a href="map.html">MAP</a></li>
+                        <li><a href="recipe.html">RECIPE</a></li>
+					</ul>
+				</div>
+			</header>
+			<div class="con">
+				<div class="heading-section" style="padding: 50px 0;">
+					<h2>Latest News and Updates</h2>
+                    <div class="news">
+                        <div>
+                            <h3>Updates on Diabetes & COVID-19 from the Australian Diabetes Society</h3>
+                            <h4>Please visit the ADS website page
+                                <a href="#">https://diabetessociety.com.au/covid-19-updates.asp</a>
+                                for the latest information regarding Diabetes & COVID-19 for health professionals.</h4>
+                        </div>
+                        <div>
+                            <h3>Coronavirus (COVID-19)</h3>
+                            <h4>Please visit the Australian Government Department of Health website
+                                <a href="#">https://www.health.gov.au/</a>
+                                for the latest news and developments on the COVID-19 pandemic.</h4>
+                        </div>
+                        <div>
+                            <h3>Coronavirus (COVID-19) infection control training</h3>
+                            <h4>Please visit the Australian Government Department of Health website at
+                                <a href="#">https://www.health.gov.au/resources/apps-and-tools/covid-19-infection-control-training/</a>
+                                to register for the 30-minute online training module for health care workers in all settings.
+                                It covers the fundamentals of infection and control for COVID-19. </h4>
+                        </div>
+                        <div>
+                            <h3>COVID-19 and the NDSS</h3>
+                            <h4>Please visit the National Diabetes Services Scheme (NDSS) website at
+                                <a href="#">https://www.ndss.com.au/coronavirus-covid-19-information/</a>
+                                for the latest information for health professionals and consumers relating to NDSS products and diabetes medicines.</h4>
+                        </div>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+<script src="js/jquery.min.js"></script>
+<script src="js/vue.min.js"></script>
+<script>
+$(function(){
+	new Vue({
+		el:'#container',
+		template: '#template1',
+		data:{
+		  video: '',
+		  screenHeight: 0,
+		  isUp: true,
+		},
+		mounted() {
+			this.init();
+		},
+		methods: {
+			init() {
+				this.screenHeight = document.documentElement.clientHeight;
+				console.log(this.screenHeight);
+				this.video = 'video/video.mp4';
+			},
+			changeUp() {
+				this.isUp = !this.isUp;
+			}
+		}
+	});
+});
+</script>
+</body>
+</html>
