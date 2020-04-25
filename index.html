@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Diabetes</title>
+    <link type="text/css" rel="stylesheet" href="css/fonts/iconfont.css"/>
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<div id="container"></div>
+<template id="template1">
+    <div class="main index_main">
+        <div id="scrollTopPos" class="scroll_top_pos"></div>
+        <div class="video_box">
+            <video ref="video" :style="videoStyle" class="video" muted loop autoplay mediatype="video"
+                   :src="video">
+            </video>
+            <div class="title">
+                <div class="main-title">Diabetes Diet Advisor</div>
+                <div class="sub-title" style="">
+                    <blockquote>
+                        <h4><span class="--mb--rich-text" style="background-color: #339966;color: #ffffff;"
+                                  data-boldtype="0">
+                        This website providing diet advice for elderly TypeII diabetes </span></h4>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+        <div :class="['con', {up: isUp}]"
+             :style="{'transform': 'translateY(' + (screenHeight - 110) + 'px)', 'min-height': (isUp ? screenHeight : (screenHeight - 110)) + 'px'}">
+            <header id="header">
+                <div class="header">
+                    <a href="#"><img class="logo" src="css/images/logo.png" alt=""/></a>
+                    <ul class="nav">
+                        <li class="cur"><a href="#">HOME</a></li>
+                        <li><a href="calc.html">CALCULATE</a></li>
+                        <li><a href="about.html">ABOUT DIABETES</a></li>
+                        <li><a href="news.html">NEWS</a></li>
+                        <li><a href="map.html">MAP</a></li>
+                        <li><a href="recipe.html">RECIPE</a></li>
+                    </ul>
+                    <i :class="['iconfont', 'icon-below-s', 'arrow', {up: isUp}]" @click="changeUp"></i>
+                </div>
+            </header>
+            <div class="index" :style="{'min-height': (screenHeight - 110) + 'px'}">
+                <div class="index-heading-section">
+                    <h1>Welcome</h1>
+                    <h1>To DDA</h1>
+                    <p class="p index-p">
+                        Our team mainly focuses on the current situation of elderly diabetic patients in
+                        Australia.
+                    </p>
+                    <p class="p index-p">
+                        The website would offer senior people to develop a healthy diet by establishing a
+                        network platform to remind harmful substances, identify nutritional content and health graded.
+                    </p>
+                    <p class="p index-p">
+                        The long-term target of the website is to cultivate user have good diet habits from follow the
+                        diet recipe.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script src="js/jquery.min.js"></script>
+<script src="js/vue.min.js"></script>
+<script>
+    $(function () {
+        new Vue({
+            el: '#container',
+            template: '#template1',
+            data: {
+                video: '',
+                screenWidth: 0,
+                screenHeight: 0,
+                isUp: false,
+                ratio: 800 / 450,
+            },
+            computed: {
+                videoStyle() {
+                    let videoWidth = 0;
+                    let videoHeight = 0;
+                    videoWidth = this.screenWidth;
+                    videoHeight = videoWidth / this.ratio;
+                    if (videoHeight < this.screenHeight) {
+                        videoHeight = this.screenHeight;
+                        videoWidth = videoHeight * this.ratio;
+                    }
+                    return 'width: ' + videoWidth + 'px;' + 'height: ' + videoHeight + 'px;';
+                }
+            },
+            mounted() {
+                this.init();
+                setTimeout(() => {
+                    this.isUp = true;
+                }, 300000);
+            },
+            methods: {
+                init() {
+                    this.screenWidth = document.documentElement.clientWidth;
+                    this.screenHeight = document.documentElement.clientHeight;
+                    this.video = 'video/video.mp4'
+                },
+                changeUp() {
+                    this.isUp = !this.isUp;
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
