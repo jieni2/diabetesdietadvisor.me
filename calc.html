@@ -546,8 +546,7 @@
                     let breakfastCalorie = this.calcResult.breakfast.split(' ')[0] || 0;
                     let lunchCalorie = this.calcResult.lunch.split(' ')[0] || 0;
                     let dinnerCalorie = this.calcResult.dinner.split(' ')[0] || 0;
-                    axios.get(this.server + `/mealschecked/getMeals?breakfastCalorie=${breakfastCalorie}
-                        &lunchCalorie=${lunchCalorie}&dinnerCalorie=${dinnerCalorie}`)
+                    axios.get(this.server + `/mealschecked/getMeals?breakfastCalorie=${breakfastCalorie}&lunchCalorie=${lunchCalorie}&dinnerCalorie=${dinnerCalorie}`)
                         .then((response) => {
                             if (response.status === 200) {
                                 this.data3 = response.data.data;
