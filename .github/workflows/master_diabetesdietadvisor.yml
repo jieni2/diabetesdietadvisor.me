@@ -28,5 +28,5 @@ jobs:
       with:
         app-name: 'diabetesdietadvisor'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_09765db1f6fc49adbc8e4cdfed3739fd }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_b62ba4b2011c46a2ae9d25a6bcd4149b }}
         package: '${{ github.workspace }}/target/*.jar'
