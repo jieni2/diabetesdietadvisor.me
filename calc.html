@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -8,7 +6,42 @@
     <link type="text/css" rel="stylesheet" href="css/fonts/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="css/iview.css">
     <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <!-- Favicon  -->
+    <link rel="icon" href="images/logo2.png">
     <style>
+
+        .fill-container {
+            width: fit-content;
+            margin: 5px;
+            justify-content: flex-start;
+            border-radius: 20px;
+            border-color: #0c5460;
+            background-color: #d9e2e6;
+            text-align: left;
+            margin-top: 50px;
+            padding: 20px;
+        }
+
+        .alert-info {
+            background-color: #d9edf7;
+            border-color: #bce8f1;
+            color: #31708f;
+        }
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .text-tangerine{
+            font-size: 90%;
+            color: #ee7f00;
+            font-weight: bold;
+            line-height: 1;
+        }
+
         .ivu-transfer-list {
             width: 45%;
         }
@@ -50,162 +83,193 @@
 <div id="container"></div>
 <template id="template1">
     <div class="main">
-        <div id="scrollTopPos" class="scroll_top_pos"></div>
-        <div :class="['con', {up: isUp}]"
-             :style="{'transform': 'translateY(' + (150) + 'px)', 'min-height': (isUp ? screenHeight : (screenHeight - 150)) + 'px'}">
-            <header id="header">
-                <div class="header">
-                    <a href="#"><img src="css/images/logo.png" alt="" style="width: 64px;height: 64px;"/></a>
-                    <ul class="nav">
-                        <li><a href="index.html">HOME</a></li>
-                        <li class="cur"><a href="#">CALORIE CONTROL</a></li>
-                        <li><a href="about.html">ABOUT DIABETES</a></li>
-                    </ul>
-                </div>
-            </header>
-            <div class="calc">
-                <div class="heading-section">
-                    <h2>Fill your information</h2>
-                    <div class="form  fill_form">
-                        <i-form ref="form" :model="calcData" label-position="top">
-                            <form-item label="Gender : " prop="">
-                                <i-select v-model="calcData.gender">
-                                    <i-option value="male">male</i-option>
-                                    <i-option value="female">female</i-option>
-                                </i-select>
-                            </form-item>
-                            <form-item label="Weight : " prop="">
-                                <Row>
-                                    <i-col span="18">
-                                        <i-input v-model="calcData.wg" placeholder="">
-                                        </i-input>
-                                    </i-col>
-                                    <i-col span="6">
-                                        <i-select v-model="calcData.opt1" @on-change="handleOpt1Change">
-                                            <i-option value="pounds">pounds</i-option>
-                                            <i-option value="kilograms">kilograms</i-option>
-                                        </i-select>
-                                    </i-col>
-                                </Row>
-                            </form-item>
-                            <form-item label="Height : " prop="">
-                                <Row>
-                                    <i-col span="6">
-                                        <i-select v-model="calcData.opt2" @on-change="handleOpt2Change">
-                                            <i-option value="1">1'</i-option>
-                                            <i-option value="2">2'</i-option>
-                                            <i-option value="3">3'</i-option>
-                                            <i-option value="4">4'</i-option>
-                                            <i-option value="5">5'</i-option>
-                                            <i-option value="6">6'</i-option>
-                                            <i-option value="7">7'</i-option>
-                                        </i-select>
-                                    </i-col>
-                                    <i-col span="6">
-                                        <i-select v-model="calcData.opt3" @on-change="handleOpt3Change">
-                                            <i-option value="1">1'</i-option>
-                                            <i-option value="2">2'</i-option>
-                                            <i-option value="3">3'</i-option>
-                                            <i-option value="4">4'</i-option>
-                                            <i-option value="5">5'</i-option>
-                                            <i-option value="6">6'</i-option>
-                                            <i-option value="7">7'</i-option>
-                                            <i-option value="8">8'</i-option>
-                                            <i-option value="9">9'</i-option>
-                                            <i-option value="10">10'</i-option>
-                                            <i-option value="11">11'</i-option>
-                                        </i-select>
-                                    </i-col>
-                                    <i-col span="6" style="text-align: center"> or cms</i-col>
-                                    <i-col span="6">
-                                        <i-input v-model="calcData.ht" placeholder="">
-                                        </i-input>
-                                    </i-col>
-                                </Row>
-                            </form-item>
-                            <form-item label="Age : " prop="">
-                                <Row>
-                                    <i-col span="6">
-                                        <Input-number :value.sync="calcData.age" min="0" max="120"></Input-number>
-                                    </i-col>
-                                </Row>
-                            </form-item>
-                            <form-item label="Physical Activity Level : " prop="">
-                                <radio-group v-model="calcData.level" @on-change="handleLevelChange">
-                                    <radio class="radio" :label="1">No Active.</radio>
-                                    <radio class="radio" :label="2">Light Active.</radio>
-                                    <radio class="radio" :label="3">Moderately Active.</radio>
-                                    <radio class="radio" :label="4">Very Active.</radio>
-                                </radio-group>
-                            </form-item>
-                            <form-item>
-                                <i-button type="primary" class="btn submit_btn" @click="calculate">Calculate
-                                </i-button>
-                            </form-item>
-                        </i-form>
-                    </div>
-                    <div v-if="calcResultShow">
+        <header id="header">
+            <div class="header">
+                <a href="#"><img src="images/logo1.png" alt="" style="width: 7.0625rem;height: 2rem;"/></a>
+                <ul class="nav">
+                    <li><a href="index.html">HOME</a></li>
+                    <li class="cur"><a href="#">CALORIE CONTROL</a></li>
+                    <li><a href="recipe.html">RECIPE</a></li>
+                    <li><a href="map.html">DISCOVERY</a></li>
+                    <li><a href="about.html">ABOUT DIABETES</a></li>
+                </ul>
+            </div>
+        </header>
+        <div class="calc">
+            <div class="heading-section" style="padding-top: 50px;">
+                <h2 style="color: #0b2e13">Measure and Recommendation</h2>
+                <h3 style="color: #0b0b0b; font-size: 18px">We aim to provide life-enhancing services and vital support to people in later life.</h3>
+                <h3 style="color: #0b0b0b; font-size: 18px"> DDA will analyze your physical condition and show you the recommended recipes for a day. </h3>
+                <Row>
+                    <i-col span="6" offset="6">
+                        <!-- <div class="" style="text-align: left;margin-top: 50px;">-->
+                        <div class="fill-container">
+                            <i-form ref="form" :model="calcData" label-position="top">
+                                <form-item label="Gender : " prop="">
+                                    <Row>
+                                        <i-col span="6">
+                                            <i-select v-model="calcData.gender">
+                                                <i-option value="male">Male</i-option>
+                                                <i-option value="female">Female</i-option>
+                                            </i-select>
+                                        </i-col>
+                                    </Row>
+                                </form-item>
+                                <form-item label="Weight : " prop="">
+                                    <Row>
+                                        <i-col span="8">
+                                            <i-input v-model="calcData.wg" placeholder=""></i-input>
+                                        </i-col>
+                                        <i-col span="8">
+                                            <i-select v-model="calcData.opt1" @on-change="handleOpt1Change">
+                                                <i-option value="kilograms">kg</i-option>
+                                                <i-option value="pounds">lb</i-option>
+                                            </i-select>
+                                        </i-col>
+                                    </Row>
+                                </form-item>
+                                <form-item label="Height : " prop="">
+                                    <Row>
+                                        <i-col span="6">
+                                            <i-select v-model="calcData.opt2" @on-change="handleOpt2Change">
+                                                <i-option value="1">1'</i-option>
+                                                <i-option value="2">2'</i-option>
+                                                <i-option value="3">3'</i-option>
+                                                <i-option value="4">4'</i-option>
+                                                <i-option value="5">5'</i-option>
+                                                <i-option value="6">6'</i-option>
+                                                <i-option value="7">7'</i-option>
+                                            </i-select>
+                                        </i-col>
+                                        <i-col span="6">
+                                            <i-select v-model="calcData.opt3" @on-change="handleOpt3Change">
+                                                <i-option value="1">1''</i-option>
+                                                <i-option value="2">2''</i-option>
+                                                <i-option value="3">3''</i-option>
+                                                <i-option value="4">4''</i-option>
+                                                <i-option value="5">5''</i-option>
+                                                <i-option value="6">6''</i-option>
+                                                <i-option value="7">7''</i-option>
+                                                <i-option value="8">8''</i-option>
+                                                <i-option value="9">9''</i-option>
+                                                <i-option value="10">10''</i-option>
+                                                <i-option value="11">11''</i-option>
+                                            </i-select>
+                                        </i-col>
+                                        <i-col span="6" style="text-align: center">inch or</i-col>
+
+                                        <i-col span="6">
+                                            <i-input v-model="calcData.ht" placeholder="">
+                                            </i-input>
+                                        </i-col>
+                                        <i-col span="6" style="text-align: center">cm</i-col>
+                                    </Row>
+                                </form-item>
+                                <form-item label="Age : " prop="">
+                                    <Row>
+                                        <i-col span="6">
+                                            <Input-number :value.sync="calcData.age" min="0" max="120"></Input-number>
+                                        </i-col>
+                                    </Row>
+                                </form-item>
+                                <form-item label="Physical Activity Level : " prop="">
+                                    <radio-group v-model="calcData.level" @on-change="handleLevelChange" vertical>
+                                        <radio class="radio" :label="1">Sedentary</radio>
+                                        <p style="color: #ff051b; font-size:15px;">little or no exercise</p>
+                                        <radio class="radio" :label="2">Light Active</radio>
+                                        <p style="color: #ff051b; font-size:15px;">light exercise 1-3 days per week</p>
+                                        <radio class="radio" :label="3">Moderately Active.</radio>
+                                        <p style="color: #ff051b; font-size:15px;">moderate exercise 3-5 days per week</p>
+                                        <radio class="radio" :label="4">Very Active.</radio>
+                                        <p style="color: #ff051b; font-size:15px;">hard exercise 6-7 days per week</p>
+                                    </radio-group>
+                                </form-item>
+                                <form-item>
+                                    <i-button id="cal" type="primary" class="btn submit_btn" @click="calculate">Calculate
+                                    </i-button>
+                                </form-item>
+                            </i-form>
+                        </div>
+
+                    </i-col>
+                    <i-col span="5" offset="1">
                         <div class="form calc-result-box">
-                            <div>
-                                Your BMI is : {{calcResult.output}}
+                            <div class="bmi-calc" style="text-align: center;">
+                                <h3> Your BMI is<h4> {{calcResult.output}}</h4></h3>
                             </div>
-                            <div>
-                                This means you are : {{calcResult.comment}}
+                            <div class="bmi-calc" style="text-align: center;">
+                                <h3> This means you are:<h4> {{calcResult.comment}}</h4></h3>
                             </div>
-                            <div>
-                                Your BMR is : {{calcResult.bmr}}
+                            <div class="bmi-calc" style="text-align: center;">
+                                <img style="justify-content:center; " src="images/BMI.png" height="260" width=360"/>
                             </div>
-                            <div>
-                                Your Daily Caloric Intake : {{calcResult.caloric}} calories per day
+                            <div class="bmi-calc">
+                                <h3> Your BMR is<h4> {{calcResult.bmr}}</h4></h3>
+                                <p> Basal Metabolic Rate is the number of calories required to keep your body functioning at rest. BMR is also known as your body's metabolism; therefore, any increase to your metabolic weight, such as exercise, will increase your BMR. To get your BMR, simply input your height, gender, age and weight below.</p>
                             </div>
-                            <div class="p-l-30">
-                                Breakfast : <span class="f-w-b">{{calcResult.breakfast}}</span>
+                            <div class="bmi-calc">
+                                <p5> Your Daily Caloric Intake:</p5>
+                                <p6> {{calcResult.caloric}}</p6>
+                                <p5> calories per day</p5>
                             </div>
-                            <div class="p-l-30">
-                                Lunch : <span class="f-w-b">{{calcResult.lunch}}</span>
+                            <div class="bmi-calc">
+                                <p5> Breakfast:</p5>
+                                <p6> {{calcResult.breakfast}}</p6>
                             </div>
-                            <div class="p-l-30">
-                                Dinner : <span class="f-w-b">{{calcResult.dinner}}</span>
+                            <div class="bmi-calc">
+                                <p5> Lunch:</p5>
+                                <p6> {{calcResult.lunch}}</p6>
+                            </div>
+                            <div class="bmi-calc">
+                                <p5> Dinner:</p5>
+                                <p6> {{calcResult.dinner}}</p6>
                             </div>
                         </div>
-                        <div>
-                            <blockquote>
-                                <h4><span class="--mb--rich-text"
-                                          style="background-color: #CEFFFF;color: #376BFB;font-size: 32px;padding: 4px 2px;"
-                                          data-boldtype="0">
+                    </i-col>
+                </Row>
+                <div v-if="calcResultShow">
+                    <div class="bmi-calc" style="text-align: center;">
+                        <img  id="pagedown" style="justify-content:center; "src="images/arrows.png" height="40"
+                              width="40"/>
+                    </div>
+
+                    <div>
+                        <blockquote>
+                            <h4><span class="--mb--rich-text"
+                                      style="background-color: #CEFFFF;color: #376BFB;font-size: 32px;padding: 4px 2px;"
+                                      data-boldtype="0">
                         Depending on your calorie intake, </span></h4>
-                            </blockquote>
-                            <blockquote style="margin-top: 30px;">
-                                <h4><span class="--mb--rich-text"
-                                          style="background-color: #CEFFFF;color: #376BFB;font-size: 32px;padding: 4px 2px; "
-                                          data-boldtype="0">
+                        </blockquote>
+                        <blockquote style="margin-top: 30px;">
+                            <h4><span class="--mb--rich-text"
+                                      style="background-color: #CEFFFF;color: #376BFB;font-size: 32px;padding: 4px 2px; "
+                                      data-boldtype="0">
                         we recommend these meals! </span></h4>
-                            </blockquote>
-                            <Row style="text-align: center;margin-top: 30px;">
-                                <i-col span="16" offset="4">
-                                    <i-table :content="self" :columns="columns3" :data="data3"
-                                             :no-data-text="noDataText"></i-table>
-                                </i-col>
-                            </Row>
-                            <!--<Row style="text-align: center;margin-top: 30px;" v-show="calcResult.output >= 25">
-                                <i-col span="16" offset="4">
-                                    <img src="css/images/img10.png" height="64" width="64" alt=""/>
-                                    <span style="line-height: 30px;font-size: 30px;font-weight: 900;">Caution! You need to limit your calorie intake. These foods are too</span>
-                                    <br>
-                                    <span style="line-height: 30px;font-size: 30px;font-weight: 900;">are too high for you. Watch out for them<img
-                                            src="css/images/img11.png" height="30" width="30" alt=""/>!</span>
-                                </i-col>
-                            </Row>
-                            <Row style="text-align: center;margin-top: 30px;" v-show="calcResult.output >= 25">
-                                <i-col span="8" offset="8">
-                                    <ul class="danger-box">
-                                        <li v-for="(item,index) in dangerMeals">
-                                            {{index+1}}. {{item.title}} -- {{item.calories}} cals
-                                        </li>
-                                    </ul>
-                                </i-col>
-                            </Row>-->
-                        </div>
+                        </blockquote>
+                        <Row style="text-align: center;margin-top: 30px;">
+                            <i-col span="16" offset="4">
+                                <i-table :content="self" :columns="columns3" :data="data3"
+                                         :no-data-text="noDataText"></i-table>
+                            </i-col>
+                        </Row>
+                        <!--<Row style="text-align: center;margin-top: 30px;" v-show="calcResult.output >= 25">
+                            <i-col span="16" offset="4">
+                                <img src="css/images/img10.png" height="64" width="64" alt=""/>
+                                <span style="line-height: 30px;font-size: 30px;font-weight: 900;">Caution! You need to limit your calorie intake. These foods are too</span>
+                                <br>
+                                <span style="line-height: 30px;font-size: 30px;font-weight: 900;">are too high for you. Watch out for them<img
+                                        src="css/images/img11.png" height="30" width="30" alt=""/>!</span>
+                            </i-col>
+                        </Row>
+                        <Row style="text-align: center;margin-top: 30px;" v-show="calcResult.output >= 25">
+                            <i-col span="8" offset="8">
+                                <ul class="danger-box">
+                                    <li v-for="(item,index) in dangerMeals">
+                                        {{index+1}}. {{item.title}} -- {{item.calories}} cals
+                                    </li>
+                                </ul>
+                            </i-col>
+                        </Row>-->
                     </div>
                 </div>
             </div>
@@ -216,6 +280,9 @@
 <script src="js/vue.min.js"></script>
 <script src="js/iview.min.js"></script>
 <script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+<script src="js/valid.password.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/store.js/1.3.20/store.min.js"></script>
 <script>
     $(function () {
         new Vue({
@@ -224,12 +291,9 @@
             data: {
                 self: this,
                 server: 'https://diabetes-20200426.azurewebsites.net',
-                video: '',
-                screenHeight: 0,
-                isUp: true,
                 calcData: {
                     wg: '',
-                    opt1: 'pounds',
+                    opt1: 'kilograms',
                     opt2: '5',
                     opt3: '10',
                     ht: 178,
@@ -239,108 +303,15 @@
                 },
                 calcResultShow: false,
                 calcResult: {
-                    output: '?',
-                    comment: '',
-                    bmr: '?',
-                    caloric: 20,
+                    output: 'Please enter your info.',
+                    comment: 'Please enter your info.',
+                    bmr: 'Please enter your info.',
+                    caloric: '0',
                     breakfast: '0 cals',
                     lunch: '0 cals',
                     dinner: '0 cals'
                 },
-                formItem2: {
-                    input: '',
-                    select: 'shanghai',
-                    gender: 'male'
-                },
-                formItem3: {},
-                titles: ['Food list', 'Selected food list'],
-                data4: [],
-                targetKeys4: [],
                 noDataText: 'No data',
-                columns1: [
-                    {
-                        title: 'Food name',
-                        key: 'foodName'
-                    },
-                    {
-                        title: 'Quantity',
-                        key: 'quantity'
-                    },
-                    {
-                        title: 'Serving size',
-                        key: 'servingSize'
-                    },
-                    {
-                        title: 'Option',
-                        key: 'option',
-                        render(row, column, index) {
-                            return `<i-button type="primary" size="small" @click="add(${index})">add</i-button>`;
-                        }
-                    }
-                ],
-                data1: [
-                    {
-                        foodName: '100 GRAND Bar',
-                        quantity: 1,
-                        servingSize: '100.0 g'
-                    },
-                    {
-                        foodName: '100 GRAND Bar',
-                        quantity: 1,
-                        servingSize: '100.0 g'
-                    },
-                    {
-                        foodName: '100 GRAND Bar',
-                        quantity: 1,
-                        servingSize: '100.0 g'
-                    },
-                    {
-                        foodName: '100 GRAND Bar',
-                        quantity: 1,
-                        servingSize: '100.0 g'
-                    }
-                ],
-                columns2: [
-                    {
-                        title: 'Food name',
-                        key: 'foodName'
-                    },
-                    {
-                        title: 'Quantity',
-                        key: 'quantity'
-                    },
-                    {
-                        title: 'Serving size',
-                        key: 'servingSize'
-                    },
-                    {
-                        title: 'Polyunsaturated fatty acids(g)',
-                        key: 'acids'
-                    },
-                    {
-                        title: 'Zinc(mg)',
-                        key: 'zinc'
-                    },
-                    {
-                        title: 'Protein(g)',
-                        key: 'protein'
-                    },
-                    {
-                        title: 'Iron(mg)',
-                        key: 'iron'
-                    },
-                    {
-                        title: 'Magnesium(mg)',
-                        key: 'magnesium'
-                    },
-                    {
-                        title: 'Option',
-                        key: 'option',
-                        render(row, column, index) {
-                            return `<i-button type="error" size="small" @click="remove(${index})">remove</i-button>`;
-                        }
-                    }
-                ],
                 columns3: [
                     {
                         title: 'Breakfast',
@@ -361,23 +332,16 @@
                         ellipsis: false
                     }
                 ],
-                data2: [],
                 data3: [],
                 dangerMeals: []
             },
             mounted() {
-                this.init();
+                let data = store.get('data');
+                if (data) {
+                    this.calcData = store.get('data');
+                }
             },
             methods: {
-                init() {
-                    this.screenHeight = document.documentElement.clientHeight;
-                    console.log(this.screenHeight);
-                    this.video = 'video/video.mp4';
-                    this.data4 = this.getMockData();
-                },
-                changeUp() {
-                    this.isUp = !this.isUp;
-                },
                 handleReset() {
                     this.$refs['form'].resetFields();
                 },
@@ -439,8 +403,6 @@
                     this.convertHeight(2);
                 },
                 handleLevelChange(value) {
-                    alert(value);
-                    alert(this.calcData.level);
                 },
                 calculate() {
                     var height = Number(this.calcData.ht);
@@ -539,11 +501,12 @@
                     } else {
                         this.calcResult.bmr = (655.1 + (9.563 + weight) + (1.85 * height) - (4.676 * age)).toFixed(2);
                     }
+                    store.set("data", Object.assign({}, this.calcData));
 
                     let breakfastCalorie = this.calcResult.breakfast.split(' ')[0] || 0;
                     let lunchCalorie = this.calcResult.lunch.split(' ')[0] || 0;
                     let dinnerCalorie = this.calcResult.dinner.split(' ')[0] || 0;
-                    axios.get(this.server + `/mealschecked/getMeals?breakfastCalorie=${breakfastCalorie}&lunchCalorie=${lunchCalorie}&dinnerCalorie=${dinnerCalorie}`)
+                    axios.get(this.server + `/meals/getMeals?breakfastCalorie=${breakfastCalorie}&lunchCalorie=${lunchCalorie}&dinnerCalorie=${dinnerCalorie}`)
                         .then((response) => {
                             if (response.status === 200) {
                                 this.data3 = response.data.data;
@@ -554,7 +517,7 @@
                         });
 
                     let caloric = this.calcResult.caloric || 0;
-                    axios.get(this.server + `/mealschecked/getDangerMeals?calorie=${caloric}`)
+                    axios.get(this.server + `/meals/getDangerMeals?calorie=${caloric}`)
                         .then((response) => {
                             console.log(response);
                             if (response.status === 200) {
@@ -565,7 +528,7 @@
                             console.log(error);
                         });
                 }
-            },
+            }
         });
     });
 </script>
