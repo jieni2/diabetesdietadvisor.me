@@ -1,0 +1,361 @@
+.ivu-checkbox-large .ivu-checkbox-inner {
+    width: 24px;
+    height: 24px;
+}
+
+.ivu-checkbox-inner {
+    top: -5px;
+}
+
+.ivu-checkbox-large .ivu-checkbox-checked .ivu-checkbox-inner:after {
+    width: 8px;
+    height: 14px;
+}
+
+.ivu-checkbox-checked .ivu-checkbox-inner:after {
+    top: 2px;
+    left: 7px;
+}
+
+.container {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.rich-text {
+    width: 100%;
+    padding: 120px 30px 80px 30px;
+}
+
+.rich-text p {
+    line-height: 0;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.rich-text p span {
+    font-family: Arial, serif;
+    font-weight: 700;
+    font-size: 40px;
+    color: rgba(0, 150, 136, 1);
+    font-style: normal;
+    letter-spacing: 0;
+    line-height: 56px;
+    text-decoration: none;
+}
+
+.dividing-line svg {
+    width: 100%;
+    height: 60px;
+    filter: none;
+}
+
+.sn-img {
+    width: 100px;
+    height: 100px;
+}
+
+.recipe-part1 {
+    text-align: center;
+}
+
+.recipe-part1-title {
+    padding: 48px 30px;
+}
+
+.recipe-part1-title p {
+    line-height: 0;
+    margin-bottom: 5px;
+}
+
+.recipe-part1-title p span {
+    font-family: Times New Roman, serif;
+    font-weight: 700;
+    font-size: 38px;
+    color: rgba(204, 98, 101, 1);
+    font-style: normal;
+    letter-spacing: 0;
+    line-height: 36px;
+    text-decoration: none;
+}
+
+.recipe-part1-form {
+    margin: 50px auto;
+    width: 60%;
+    text-align: left;
+}
+
+.recipe-part2 {
+    text-align: center;
+}
+
+.recipe-part2-title {
+    padding: 48px 30px;
+}
+
+.recipe-part2-title p {
+    line-height: 0;
+    margin-bottom: 5px;
+}
+
+.recipe-part2-title p span {
+    font-family: Times New Roman, serif;
+    font-weight: 700;
+    font-size: 38px;
+    color: rgba(204, 98, 101, 1);
+    font-style: normal;
+    letter-spacing: 0;
+    line-height: 42px;
+    text-decoration: none;
+}
+
+.recipe-part2-form {
+    margin: 0 auto;
+    width: 1000px;
+    right:20px;
+    padding: 80px 40px 80px 40px;
+    text-align: left;
+    border-color: rgb(0, 150, 136);
+    border-radius: 12px;
+    border-width: 9px;
+    border-style: dashed;
+}
+
+.recipe-part2-form .input-label {
+    font-family: Arial, serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: rgb(16, 16, 16);
+    font-style: normal;
+    letter-spacing: 0;
+    line-height: 42px;
+    text-decoration: none;
+}
+
+.recipe-part2-form svg {
+    overflow: visible;
+    filter: none;
+    margin-top: 80px;
+    height: 10px;
+}
+
+.f-t-a-r {
+    text-align: right;
+}
+
+.f-t-a-l {
+    text-align: left;
+}
+
+.f-t-a-c {
+    text-align: center;
+}
+
+.f-p-r-50 {
+    padding-right: 50px;
+}
+
+.f-m-t-48 {
+    margin-top: 48px;
+}
+
+.recipe-part2-form-checkbox {
+    display: inline-block;
+    margin: 20px 60px;
+}
+
+.recipe-part2-form-checkbox span {
+    font-family: Arial, serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: rgb(16, 16, 16);
+    font-style: normal;
+    letter-spacing: 0;
+    line-height: 32px;
+    text-decoration: none;
+}
+
+.recipe-part2-form-checkbox .ck {
+    margin-left: 20px;
+}
+
+.recipe-part3 {
+    margin: 80px auto;
+    width: 257px;
+    height: 95px;
+    color: rgb(63, 81, 181);
+    background-color: rgba(255, 152, 0, 0.67);
+    border-color: rgb(255, 152, 0);
+    border-radius: 4px;
+    font-size: 36px;
+    border-width: 1px;
+    border-style: solid;
+    text-align: center;
+    font-weight: bold;
+    font-style: normal;
+    opacity: 1;
+}
+
+.recipe-part3 .button-wrapper {
+    height: 100%;
+    cursor: pointer;
+}
+
+.recipe-part3 .button-wrapper .text {
+    line-height: 95px;
+}
+
+
+.result-box {
+    width: 1000px;
+    margin: 0 auto;
+    background-image: url('images/v2_q9jxh5.jpg');
+    position: relative;
+}
+
+.result-title {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.result-title span {
+    font-family: Courier New, serif;
+    font-weight: 700;
+    font-size: 48px;
+    color: rgba(232, 128, 128, 1);
+    font-style: normal;
+    letter-spacing: 0;
+    line-height: 54px;
+    text-decoration: underline;
+}
+
+.result-close {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+}
+
+.result-close image {
+    width: 84px;
+    height: 84px;
+    cursor: pointer;
+}
+
+.result-body {
+    width: 950px;
+    background-color: rgba(255, 255, 255, 0.78);
+    border-color: rgb(255, 152, 0);
+    box-shadow: rgb(170, 170, 170) 0 0 0 0;
+    font-size: 14px;
+    padding: 0;
+    border-width: 7px;
+    border-style: dashed;
+    text-align: center;
+    line-height: 20px;
+    font-weight: normal;
+    font-style: normal;
+    opacity: 1;
+    margin: 0 auto;
+    position: relative;
+}
+
+.body-part1-left {
+    text-shadow: rgb(170, 170, 170) 0 0 0;
+    font-size: 14px;
+    text-align: left;
+    line-height: 0;
+    font-weight: normal;
+    font-style: normal;
+    opacity: 1;
+    display: table-cell;
+    width: 450px;
+    position: absolute;
+    top: calc(50% - 20px);
+    left: 50px;
+}
+
+.body-part1-left span {
+    font-family: Arial, serif;
+    font-weight: 700;
+    font-size: 36px;
+    color: rgba(0, 0, 0, 0.97);
+    font-style: normal;
+    letter-spacing: 0;
+    line-height: 42px;
+    text-decoration: none;
+}
+
+.body-part1-right {
+    background-color: transparent;
+    border-color: rgba(255, 231, 0, 0.75);
+    font-size: 28px;
+    padding: 0;
+    border-width: 6px;
+    border-style: solid;
+    text-align: left;
+    line-height: 41px;
+    font-weight: normal;
+    font-style: normal;
+    opacity: 1;
+    display: inline-block;
+    width: 580px;
+    margin-top: 20px;
+    /*height: 888px;*/
+    margin-left: 300px;
+}
+
+.body-part1-right .text {
+    padding: 0;
+}
+
+.body-part2 {
+    border-color: rgb(255, 152, 0);
+    font-weight: normal;
+    font-style: normal;
+    opacity: 1;
+    margin-top: 20px;
+}
+
+.body-part2 svg {
+    overflow: visible;
+    filter: none;
+    width: 100%;
+    height: 10px;
+}
+
+.body-part3-head {
+    padding: 48px;
+    text-align: left;
+}
+
+.body-part3-head span {
+    font-family: Arial, serif;
+    font-weight: 700;
+    font-size: 36px;
+    color: rgba(0, 0, 0, 0.97);
+    font-style: normal;
+    letter-spacing: 0;
+    line-height: 42px;
+    text-decoration: none;
+}
+
+.body-part3-content {
+    text-align: left;
+    padding: 0 48px 48px;
+}
+
+.body-part3-content p {
+    line-height: 0;
+    margin-bottom: 5px;
+}
+
+.body-part3-content p span {
+    font-family: Times New Roman, serif;
+    font-weight: 400;
+    font-size: 28px;
+    color: rgba(0, 0, 0, 0.97);
+    font-style: normal;
+    letter-spacing: 0;
+    line-height: 32px;
+    text-decoration: none;
+}

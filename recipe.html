@@ -6,55 +6,601 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Diabetes</title>
     <link type="text/css" rel="stylesheet" href="css/fonts/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/iview.css">
     <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/recipe.css">
+    <!-- Favicon  -->
+    <link rel="icon" href="images/logo2.png">
+    <style>
+        .top {
+            padding: 10px;
+            background: rgba(0, 153, 229, .7);
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+        }
+    </style>
 </head>
 <body>
-<div id="container"></div>
+<div id="container" style="color: rgba(255,250,250,0)"></div>
 <template id="template1">
     <div class="main">
-        <div id="scrollTopPos" class="scroll_top_pos"></div>
-        <div :class="['con', {up: isUp}]"
-             :style="{'transform': 'translateY(' + (150) + 'px)', 'min-height': (isUp ? screenHeight : (screenHeight - 150)) + 'px'}">
-            <header id="header">
-                <div class="header">
-                    <a href="#"><img src="css/images/logo.png" alt="" style="width: 64px;height: 64px;"/></a>
-                    <ul class="nav">
-                        <li><a href="index.html">HOME</a></li>
-                        <li><a href="calc.html">CALCULATE</a></li>
-                        <li><a href="about.html">ABOUT DIABETES</a></li>
-                        <li><a href="news.html">NEWS</a></li>
-                        <li><a href="map.html">MAP</a></li>
-                        <li class="cur"><a href="#">RECIPE</a></li>
-                    </ul>
+        <header id="header">
+            <div class="header">
+                <a href="#"><img src="images/logo1.png" alt="" style="width: 7.0625rem;height: 2rem;"/></a>
+                <ul class="nav" style="margin-bottom: 0;">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="calc.html">CALORIE CONTROL</a></li>
+                    <li class="cur"><a href="#">RECIPE</a></li>
+                    <li><a href="map.html">DISCOVERY</a></li>
+                    <li><a href="about.html">ABOUT DIABETES</a></li>
+
+                </ul>
+            </div>
+        </header>
+        <div class="result-box" v-show="showResult">
+            <div class="result-title">
+                <span>{{title}}</span>
+            </div>
+            <div class="result-close" style="cursor: pointer;">
+                <img src="css/images/close.png" alt="" @click="handleCloseResult">
+            </div>
+            <div class="result-body">
+                <div style="position: relative;">
+                    <div class="body-part1-left">
+                        <span>Ingredients：</span>
+                    </div>
+                    <div class="body-part1-right">
+                        <div class="text">
+                            <p v-for="item in ingredients">{{item}}</p>
+                        </div>
+                    </div>
                 </div>
-            </header>
-            <div id="map" class="map" :style="{height: (isUp ? (screenHeight-130): (screenHeight - 280)) + 'px'}"></div>
+                <div class="body-part2">
+                    <svg xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 20 0.5 L 905 0.5" stroke="rgba(255, 152, 0, 1)" stroke-width="12"
+                              stroke-dasharray="6 2"></path>
+                        <path d="M 20 0.5 L 905 0.5" stroke="transparent" stroke-width="12"
+                              style="pointer-events: auto;"></path>
+                    </svg>
+                </div>
+                <div class="body-part3-head">
+                    <span>Direction:</span>
+                </div>
+                <div class="body-part3-content">
+                    <p v-for="item in directions">
+                        <span>{{item}}. </span>
+                    </p>
+                </div>
+            </div>
         </div>
+        <div class="container" v-show="!showResult">
+            <div class="rich-text">
+                <p>
+                        <span>
+                            Would you like to have a recipe tailored for you?
+                        </span>
+                </p>
+                <p>
+                        <span>
+                            Start Now!
+                        </span>
+                </p>
+            </div>
+            <div class="dividing-line">
+                <svg xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 80 0.5 L 900 0.5" stroke="rgba(17, 44, 193, 1)" stroke-width="9"
+                          stroke-dasharray="6 2"></path>
+                    <path d="M 80 0.5 L 900 0.5" stroke="transparent" stroke-width="10"
+                          style="pointer-events: auto;"></path>
+                </svg>
+            </div>
+            <div class="recipe-part1">
+                <img class="sn-img" src="css/images/v2_q9jv9n.png" alt="">
+                <div class="recipe-part1-title">
+                    <p>
+                            <span>
+                                Ok, let's Fill Your Information. So we can know your body condition
+                            </span>
+                    </p>
+                </div>
+                <div class="recipe-part1-form">
+                    <i-form ref="form" :model="calcData" label-position="top">
+                        <form-item label="Gender : " prop="">
+                            <Row>
+                                <i-col span="6">
+                                    <i-select v-model="calcData.gender">
+                                        <i-option value="male">Male</i-option>
+                                        <i-option value="female">Female</i-option>
+                                    </i-select>
+                                </i-col>
+                            </Row>
+                        </form-item>
+                        <form-item label="Weight : " prop="">
+                            <Row>
+                                <i-col span="6">
+                                    <i-input v-model="calcData.wg" placeholder=""></i-input>
+                                </i-col>
+                                <i-col span="6">
+                                    <i-select v-model="calcData.opt1" @on-change="handleOpt1Change">
+                                        <i-option value="kilograms">kilograms</i-option>
+                                        <i-option value="pounds">pounds</i-option>
+                                    </i-select>
+                                </i-col>
+                            </Row>
+                        </form-item>
+                        <form-item label="Height : " prop="">
+                            <Row>
+                                <i-col span="6">
+                                    <i-select v-model="calcData.opt2" @on-change="handleOpt2Change">
+                                        <i-option value="1">1'</i-option>
+                                        <i-option value="2">2'</i-option>
+                                        <i-option value="3">3'</i-option>
+                                        <i-option value="4">4'</i-option>
+                                        <i-option value="5">5'</i-option>
+                                        <i-option value="6">6'</i-option>
+                                        <i-option value="7">7'</i-option>
+                                    </i-select>
+                                </i-col>
+                                <i-col span="6">
+                                    <i-select v-model="calcData.opt3" @on-change="handleOpt3Change">
+                                        <i-option value="1">1''</i-option>
+                                        <i-option value="2">2''</i-option>
+                                        <i-option value="3">3''</i-option>
+                                        <i-option value="4">4''</i-option>
+                                        <i-option value="5">5''</i-option>
+                                        <i-option value="6">6''</i-option>
+                                        <i-option value="7">7''</i-option>
+                                        <i-option value="8">8''</i-option>
+                                        <i-option value="9">9''</i-option>
+                                        <i-option value="10">10''</i-option>
+                                        <i-option value="11">11''</i-option>
+                                    </i-select>
+                                </i-col>
+                                <i-col span="6" style="text-align: center"> or cms</i-col>
+                                <i-col span="6">
+                                    <i-input v-model="calcData.ht" placeholder="">
+                                    </i-input>
+                                </i-col>
+                            </Row>
+                        </form-item>
+                        <form-item label="Age : " prop="">
+                            <Row>
+                                <i-col span="6">
+                                    <Input-number :value.sync="calcData.age" min="0" max="120"></Input-number>
+                                </i-col>
+                            </Row>
+                        </form-item>
+                        <form-item label="Physical Activity Level : " prop="">
+                            <radio-group v-model="calcData.level" @on-change="handleLevelChange" vertical>
+                                <radio class="radio" :label="1">No Active.</radio>
+                                <radio class="radio" :label="2">Light Active.</radio>
+                                <radio class="radio" :label="3">Moderately Active.</radio>
+                                <radio class="radio" :label="4">Very Active.</radio>
+                            </radio-group>
+                        </form-item>
+                    </i-form>
+                </div>
+            </div>
+            <div class="dividing-line">
+                <svg xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 80 0.5 L 900 0.5" stroke="rgba(17, 44, 193, 1)" stroke-width="9"
+                          stroke-dasharray="6 2"></path>
+                    <path d="M 80 0.5 L 900 0.5" stroke="transparent" stroke-width="10"
+                          style="pointer-events: auto;"></path>
+                </svg>
+            </div>
+            <div class="recipe-part2">
+                <img class="sn-img" src="css/images/v2_q9jvrr.png" alt="">
+                <div class="recipe-part2-title">
+                    <p>
+                            <span>
+                                Next, What are your preferences?
+                            </span>
+                    </p>
+                </div>
+                <div class="recipe-part2-form">
+                    <Row>
+                        <i-col span="12" class="f-t-a-r f-p-r-50">
+                            <span class="input-label">This recipe is made for</span>
+                        </i-col>
+                        <i-col span="8">
+                            <i-select :model.sync="calcData.made" size="large" placeholder="">
+                                <i-option v-for="item in madeList" :value="item.value">{{ item.label }}</i-option>
+                            </i-select>
+                        </i-col>
+                    </Row>
+                    <!--<Row class="f-m-t-48">
+                        <i-col span="12" class="f-t-a-r f-p-r-50">
+                            <span class="input-label">I am allergic to</span>
+                        </i-col>
+                        <i-col span="8">
+                            <i-input :value.sync="calcData.allergic" size="large" placeholder=""></i-input>
+                        </i-col>
+                    </Row>-->
+                    <Row class="f-m-t-48">
+                        <i-col span="12" class="f-t-a-r f-p-r-50">
+                            <span class="input-label">My favorite cuisine is</span>
+                        </i-col>
+                        <i-col span="8">
+                            <i-select :model.sync="calcData.cuisine" size="large" placeholder="">
+                                <i-option v-for="item in cuisineList" :value="item.value">{{ item.label }}
+                                </i-option>
+                            </i-select>
+                        </i-col>
+                    </Row>
+                    <svg xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 0 0.5 L 900 0.5" stroke="rgba(139, 195, 74, 1)" stroke-width="9"
+                              stroke-dasharray=""></path>
+                        <path d="M 0 0.5 L 900 0.5" stroke="transparent" stroke-width="10"
+                              style="pointer-events: auto;"></path>
+                    </svg>
+                    <Row class="f-m-t-48">
+                        <i-col span="24" style="text-align: left;padding-right: 50px;">
+                            <span class="input-label">Choose your favorite meats (multi-choice):</span>
+                        </i-col>
+                    </Row>
+                    <Row class="f-m-t-48">
+                        <div class="recipe-part2-form-checkbox" v-for="item in favorites">
+                            <span>{{item}}</span>
+                            <Checkbox :true-value="item" :false-value="'-' + item" size="large" class="ck"
+                                      @on-change="handleFavoritesChange"></Checkbox>
+                        </div>
+                    </Row>
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         style="overflow: visible; filter: none;margin-top: 80px;height: 10px;">
+                        <path d="M 0 0.5 L 900 0.5" stroke="rgba(139, 195, 74, 1)" stroke-width="9"
+                              stroke-dasharray=""></path>
+                        <path d="M 0 0.5 L 900 0.5" stroke="transparent" stroke-width="10"
+                              style="pointer-events: auto;"></path>
+                    </svg>
+                    <Row class="f-m-t-48">
+                        <i-col span="24" class="f-t-a-l f-p-r-50">
+                            <span class="input-label">Choose your preference (multi-choice):</span>
+                        </i-col>
+                    </Row>
+                    <Row class="f-m-t-48">
+                        <div class="recipe-part2-form-checkbox" v-for="item in preferences">
+                            <span>{{item}}</span>
+                            <Checkbox :true-value="item" :false-value="'-' + item" size="large" class="ck"
+                                      @on-change="handlePreferencesChange"></Checkbox>
+                        </div>
+                    </Row>
+                </div>
+            </div>
+
+            <div class="recipe-part3">
+                <div class="button-wrapper" @click="handleRecipe"><span class="text">Get a Recipe</span>
+                </div>
+            </div>
+        </div>
+        <Back-top :height="100" :bottom="100" ref="backTop" :duration="500">
+            <div class="top">Back to Top</div>
+        </Back-top>
     </div>
 </template>
 <script src="js/jquery.min.js"></script>
 <script src="js/vue.min.js"></script>
+<script src="js/iview.min.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+<script src="js/valid.password.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/store.js/1.3.20/store.min.js"></script>
 <script>
     $(function () {
         new Vue({
             el: '#container',
             template: '#template1',
             data: {
-                video: '',
-                screenHeight: 0,
-                isUp: true
+                server: 'https://diabetes-20200426.azurewebsites.net',
+                calcData: {
+                    wg: '',
+                    opt1: 'kilograms',
+                    opt2: '5',
+                    opt3: '10',
+                    ht: 178,
+                    age: 10,
+                    gender: 'male',
+                    level: 2,
+                    made: 'Breakfast',
+                    allergic: '',
+                    cuisine: '',
+                    favorites: [],
+                    preferences: []
+                },
+                calcResult: {
+                    output: '?',
+                    comment: '',
+                    bmr: '?',
+                    caloric: 20,
+                    breakfast: '0 cals',
+                    lunch: '0 cals',
+                    dinner: '0 cals'
+                },
+                madeList: [{
+                    value: 'Breakfast',
+                    label: 'Breakfast'
+                }, {
+                    value: 'Lunch',
+                    label: 'Lunch'
+                }, {
+                    value: 'Dinner',
+                    label: 'Dinner'
+                }],
+                cuisineList: [{
+                    value: 'brazilian',
+                    label: 'Brazilian'
+                }, {
+                    value: 'british',
+                    label: 'British'
+                }, {
+                    value: 'cajun_creole',
+                    label: 'Cajun Creole'
+                }, {
+                    value: 'chinese',
+                    label: 'Chinese'
+                }, {
+                    value: 'filipino',
+                    label: 'Filipino'
+                }, {
+                    value: 'french',
+                    label: 'French'
+                }, {
+                    value: 'greek',
+                    label: 'Greek'
+                }, {
+                    value: 'indian',
+                    label: 'Indian'
+                }, {
+                    value: 'irish',
+                    label: 'Irish'
+                }, {
+                    value: 'italian',
+                    label: 'Italian'
+                }, {
+                    value: 'jamaican',
+                    label: 'Jamaican'
+                }, {
+                    value: 'japanese',
+                    label: 'Japanese'
+                }, {
+                    value: 'korean',
+                    label: 'Korean'
+                }, {
+                    value: 'mexican',
+                    label: 'Mexican'
+                }, {
+                    value: 'moroccan',
+                    label: 'Moroccan'
+                }, {
+                    value: 'russian',
+                    label: 'Russian'
+                }, {
+                    value: 'southern_us',
+                    label: 'Southern US'
+                }, {
+                    value: 'spanish',
+                    label: 'Spanish'
+                }, {
+                    value: 'thai',
+                    label: 'Thai'
+                }, {
+                    value: 'vietnamese',
+                    label: 'Vietnamese'
+                }],
+                favorites: ['Chicken', 'Fish and Seafood', 'Duck', 'Pork', 'Turkey', 'Goat'
+                    , 'Lamb', 'Beef','Other'],
+                preferences: ['Beans', 'Bread', 'Cheese', 'Corn', 'Noodles', 'Nuts','Potatoes', 'Rice', 'Salad', 'Tomatoes', 'Other'],
+                showResult: false,
+                ingredients: [],
+                directions: [],
+                title: ''
             },
             mounted() {
-                this.init();
+                let data = store.get('data');
+                if (data) {
+                    this.calcData = store.get('data');
+                }
             },
             methods: {
-                init() {
-                    this.screenHeight = document.documentElement.clientHeight;
-                    console.log(this.screenHeight);
-                    this.video = 'video/video.mp4'
+                handleOpt1Change(value) {
+                    if (value === 'pounds') {
+                        this.calcData.wg = Math.round((this.calcData.wg * 2.2) * 100) / 100;
+                    } else {
+                        this.calcData.wg = Math.round(this.calcData.wg / 2.2);
+                    }
                 },
-                changeUp() {
-                    this.isUp = !this.isUp;
+                convertHeight(type) {
+                    var ft = 0, inc = 0, ht = 0;
+                    if (type === 1 || type === 2) {
+                        ft = this.calcData.opt2;
+                        inc = this.calcData.opt3;
+
+                        var ss = ft * 12;
+                        var tot = ss + parseInt(inc);
+                        var val = tot * 2.54;
+                        this.calcData.ht = Math.round(val);
+                    } else {
+                        ht = this.calcData.ht;
+                        if (ht !== "") {
+                            var cm = Math.round(ht / 2.54);
+                            var div = parseInt(cm / 12);
+                            var md = cm % 12;
+                            this.calcData.opt2 = div;
+                            this.calcData.opt3 = md;
+                        }
+                    }
+                },
+                handleOpt2Change(value) {
+                    this.convertHeight(1);
+                },
+                handleOpt3Change(value) {
+                    this.convertHeight(2);
+                },
+                handleLevelChange(value) {
+                },
+                handleRecipe() {
+                    this.calculate();
+                    var params = {
+                        made: this.calcData.made.toLowerCase(),
+                        favorites: this.calcData.favorites,
+                        preferences: this.calcData.preferences,
+                        cuisine: this.calcData.cuisine,
+                        calorie: 0
+                    };
+                    let breakfastCalorie = parseInt(this.calcResult.breakfast.split(' ')[0]) || 0;
+                    let lunchCalorie = parseInt(this.calcResult.lunch.split(' ')[0]) || 0;
+                    let dinnerCalorie = parseInt(this.calcResult.dinner.split(' ')[0]) || 0;
+                    if ('breakfast' === params.made) {
+                        params.calorie = breakfastCalorie;
+                    } else if ('lunch' === params.made) {
+                        params.calorie = lunchCalorie;
+                    } else if ('dinner' === params.made) {
+                        params.calorie = dinnerCalorie;
+                    }
+                    axios.post(this.server + '/meals/getRecipeMeals', params)
+                        .then((response) => {
+                            console.log('response', response);
+                            if (response.status === 200) {
+                                let data = response.data.data || {};
+                                this.title = data.title;
+                                this.ingredients = (data.ingredients || '').split(',');
+                                this.directions = (data.directions || '').split('.');
+                                this.showResult = true;
+                                this.$refs.backTop.$el.click();
+                            }
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                },
+                handleCloseResult() {
+                    this.showResult = false;
+                    this.$refs.backTop.$el.click();
+                },
+                handlePreferencesChange(val) {
+                    val = val.toLowerCase();
+                    if (!val.startsWith('-')) {
+                        this.calcData.preferences.push(val);
+                    } else {
+                        this.calcData.preferences.forEach((item, index) => {
+                            if (('-' + item) === val) {
+                                this.calcData.preferences.splice(index, 1);
+                            }
+                        });
+                    }
+                },
+                handleFavoritesChange(val) {
+                    val = val.toLowerCase();
+                    if (!val.startsWith('-')) {
+                        this.calcData.favorites.push(val);
+                    } else {
+                        this.calcData.favorites.forEach((item, index) => {
+                            if (('-' + item) === val) {
+                                this.calcData.favorites.splice(index, 1);
+                            }
+                        });
+                    }
+                },
+                calculate() {
+                    var height = Number(this.calcData.ht);
+                    var weight = Number(this.calcData.wg);
+                    var weightunits = this.calcData.opt1;
+
+                    height /= 100;
+
+                    if (weightunits === "pounds") weight /= 2.20462;
+
+                    var level = this.calcData.level;
+                    var bodysize = "Normal";
+                    var perkilogram1 = 25;
+                    var perkilogram2 = 30;
+
+
+                    //Perform calculation
+                    var BMI = weight / Math.pow(height, 2);
+                    //Display result of calculation
+                    this.calcResult.output = Math.round(BMI * 100) / 100;
+                    if (BMI < 18.5) bodysize = "Underweight";
+                    if (BMI >= 18.5 && BMI <= 25) bodysize = "Normal";
+                    if (BMI >= 25 && BMI <= 30) bodysize = "Overweight";
+                    if (BMI > 30) bodysize = "Obese";
+
+                    this.calcResult.comment = bodysize;
+
+                    if (bodysize === "Underweight" && level === 1) {
+                        perkilogram1 = 20;
+                        perkilogram2 = 25;
+                    }
+
+                    if (bodysize === "Underweight" && level === 2) {
+                        perkilogram1 = 30;
+                        perkilogram2 = 35;
+                    }
+
+                    if (bodysize === "Underweight" && level === 3) {
+                        perkilogram1 = 35;
+                        perkilogram2 = 40;
+                    }
+
+                    if (bodysize === "Underweight" && level === 4) {
+                        perkilogram1 = 40;
+                        perkilogram2 = 45;
+                    }
+
+                    if (bodysize === "Normal" && level === 1) {
+                        perkilogram1 = 15;
+                        perkilogram2 = 20;
+                    }
+
+                    if (bodysize === "Normal" && level === 2) {
+                        perkilogram1 = 25;
+                        perkilogram2 = 30;
+                    }
+
+                    if (bodysize === "Normal" && level === 3) {
+                        perkilogram1 = 30;
+                        perkilogram2 = 35;
+                    }
+
+                    if (bodysize === "Normal" && level === 4) {
+                        perkilogram1 = 35;
+                        perkilogram2 = 40;
+                    }
+                    if (BMI >= 25 && level === 1) {
+                        perkilogram1 = 15;
+                        perkilogram2 = 20;
+                    }
+                    if (BMI >= 25 && level === 2) {
+                        perkilogram1 = 20;
+                        perkilogram2 = 25;
+                    }
+
+                    if (BMI >= 25 && level === 3) {
+                        perkilogram1 = 25;
+                        perkilogram2 = 30;
+                    }
+
+                    if (BMI >= 25 && level === 4) {
+                        perkilogram1 = 30;
+                        perkilogram2 = 35;
+                    }
+
+                    this.calcResult.caloric = Math.round(perkilogram2 * weight);
+                    this.calcResult.breakfast = Math.round(perkilogram2 * weight * 0.2) + ' cals';
+                    this.calcResult.lunch = Math.round(perkilogram2 * weight * 0.4) + ' cals';
+                    this.calcResult.dinner = Math.round(perkilogram2 * weight * 0.4) + ' cals';
+                    this.calcResultShow = true;
+
+                    let age = Number(this.calcData.age);
+
+                    if (this.calcData.gender === 'male') {
+                        this.calcResult.bmr = (66.47 + (13.75 + weight) + (5.003 * height) - (6.755 * age)).toFixed(2);
+                    } else {
+                        this.calcResult.bmr = (655.1 + (9.563 + weight) + (1.85 * height) - (4.676 * age)).toFixed(2);
+                    }
+
+                    store.set("data", Object.assign({}, this.calcData));
                 }
             }
         });

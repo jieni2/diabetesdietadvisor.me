@@ -7,33 +7,85 @@
     <title>Diabetes</title>
     <link type="text/css" rel="stylesheet" href="css/fonts/iconfont.css"/>
     <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="css/map.css"/>
+    <!-- Favicon  -->
+    <link rel="icon" href="images/logo2.png">
+
 </head>
 <body>
 <div id="container"></div>
 <template id="template1">
     <div class="main">
-        <div id="scrollTopPos" class="scroll_top_pos"></div>
-        <div :class="['con', {up: isUp}]"
-             :style="{'transform': 'translateY(' + (150) + 'px)', 'min-height': (isUp ? screenHeight : (screenHeight - 150)) + 'px'}">
-            <header id="header">
-                <div class="header">
-                    <a href="#"><img src="css/images/logo.png" alt="" style="width: 64px;height: 64px;"/></a>
-                    <ul class="nav">
-                        <li><a href="index.html">HOME</a></li>
-                        <li><a href="calc.html">CALCULATE</a></li>
-                        <li><a href="about.html">ABOUT DIABETES</a></li>
-                        <li><a href="news.html">NEWS</a></li>
-                        <li class="cur"><a href="#">MAP</a></li>
-                        <li><a href="recipe.html">RECIPE</a></li>
-                    </ul>
+        <header id="header">
+            <div class="header">
+                <a href="#"><img src="images/logo1.png" alt="" style="width: 7.0625rem;height: 2rem;"/></a>
+                <ul class="nav">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="calc.html">CALORIE CONTROL</a></li>
+                    <li><a href="recipe.html">RECIPE</a></li>
+                    <li class="cur"><a href="#">DISCOVERY</a></li>
+                    <li><a href="about.html">ABOUT DIABETES</a></li>
+                </ul>
+            </div>
+        </header>
+        <div class="con">
+            <div class="heading-section" style="padding: 50px 0;">
+                <h2>Find Your Nearby Supermarkets</h2>
+                <div class="news">
+                    <div class="clinic-search-label">
+                        <label>Find your nearby supermarkets</label></div>
                 </div>
-            </header>
-            <div id="map" class="map" :style="{height: (isUp ? (screenHeight-130): (screenHeight - 280)) + 'px'}"></div>
+                <div id="locationField">
+                    <input id="autocomplete" placeholder="Enter a suburb to search" type="text"/>
+                    <div style="margin-left:850px;margin-top:40px;color: #0079c8">
+                        <h3>Results List:</h3>
+                    </div>
+                </div>
+
+                <div id="map"></div>
+
+                <div id="listing" style="margin-left:300px">
+                    <table id="resultsTable">
+                        <tbody id="results"></tbody>
+                    </table>
+                </div>
+
+                <div style="display: none">
+                    <div id="info-content">
+                        <table>
+                            <tr id="iw-url-row" class="iw_table_row">
+                                <td id="iw-icon" class="iw_table_icon"></td>
+                                <td id="iw-url"></td>
+                            </tr>
+                            <tr id="iw-address-row" class="iw_table_row">
+                                <td class="iw_attribute_name">Address:</td>
+                                <td id="iw-address"></td>
+                            </tr>
+                            <tr id="iw-phone-row" class="iw_table_row">
+                                <td class="iw_attribute_name">Telephone:</td>
+                                <td id="iw-phone"></td>
+                            </tr>
+                            <tr id="iw-rating-row" class="iw_table_row">
+                                <td class="iw_attribute_name">Rating:</td>
+                                <td id="iw-rating"></td>
+                            </tr>
+                            <tr id="iw-website-row" class="iw_table_row">
+                                <td class="iw_attribute_name">Website:</td>
+                                <td id="iw-website"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
+
 <script src="js/jquery.min.js"></script>
 <script src="js/vue.min.js"></script>
+<script src="js/map.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpjzcx3gp_y3p0yO-ESAJIz1tOIh8PmVw&libraries=places&language=en-AU&callback=initMap"
+        async defer></script>
 <script>
     $(function () {
         new Vue({
@@ -62,3 +114,4 @@
 </script>
 </body>
 </html>
+

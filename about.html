@@ -6,84 +6,217 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Diabetes</title>
     <link type="text/css" rel="stylesheet" href="css/fonts/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/iview.css">
     <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="css/about.css"/>
+    <!-- Favicon  -->
+    <link rel="icon" href="images/logo2.png">
+    <style>
+        .ivu-transfer-list {
+            width: 45%;
+        }
+
+        .ivu-row {
+            margin: 5px 0;
+        }
+
+        .calc-result-box > div {
+            padding: 8px 0;
+        }
+
+        .ivu-table-header th, .ivu-table-body td {
+            font-size: 24px;
+            padding: 20px !important;
+        }
+
+        .ivu-table-header th {
+            color: #FD651E;
+            background-color: white;
+            border-bottom: none;
+        }
+
+        .ivu-table-body td {
+            color: black;
+            border-bottom: none;
+        }
+
+        .ivu-table-cell span {
+            word-break: keep-all;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            text-align: justify;
+            text-justify: inter-ideograph;
+        }
+
+        .top {
+            padding: 10px;
+            background: rgba(0, 153, 229, .7);
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+        }
+    </style>
 </head>
 <body>
 <div id="container"></div>
 <template id="template1">
     <div class="main">
-        <div id="scrollTopPos" class="scroll_top_pos"></div>
-        <div :class="['con', {up: isUp}]"
-             :style="{'transform': 'translateY(' + (150) + 'px)', 'min-height': (isUp ? screenHeight : (screenHeight - 150)) + 'px'}">
-            <header id="header">
-                <div class="header">
-                    <a href="#"><img src="css/images/logo.png" alt="" style="width: 64px;height: 64px;"/></a>
-                    <ul class="nav">
-                        <li><a href="index.html">HOME</a></li>
-                        <li><a href="calc.html">CALORIE CONTROL</a></li>
-                        <li><a href="about.html">ABOUT DIABETES</a></li>
-                    </ul>
+        <header id="header">
+            <div class="header">
+                <a href="#"><img src="images/logo1.png" alt="" style="width: 7.0625rem;height: 2rem;"/></a>
+                <ul class="nav" style="margin-bottom: 0;">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="calc.html">CALORIE CONTROL</a></li>
+                    <li><a href="recipe.html">RECIPE</a></li>
+                    <li><a href="map.html">DISCOVERY</a></li>
+                    <li class="cur"><a href="#">ABOUT DIABETES</a></li>
+                </ul>
+            </div>
+        </header>
+        <div>
+            <div class="field__item">
+                <div class="paragraph paragraph--type--long-form-text paragraph--view-mode--default" data-anchor="636">
+                    <p class="eyebrow">Diabetes&nbsp;</p>
+
+                    <h1>Understanding diabetes starts here.</h1>
+
+                    <h2>No matter where you are in your fight, here’s where you need to be.</h2>
+
+                    <p>Whether you’ve been newly diagnosed, have been fighting against type 1 or type 2 diabetes for a
+                        while, or are helping a loved one, you’ve come to the right place. This is the start of gaining
+                        a
+                        deeper understanding of how you can live a healthier life—with all the tools, health tips, and
+                        food
+                        ideas you need. Wherever you’re at with this disease, know that you have options and that you
+                        don’t
+                        have to be held back. You can still live your best life. All you have to do is take action and
+                        stick
+                        with it.</p>
+
+                    <!--
+                    <h3>Diabetes Risk Assessment Tool</h3>
+
+                    <p>This is a link to a test form to help the risk assessment of diabetics, it may help you assess
+                        the
+                        risk of type 2 diabetes in the next 5 years.</p>
+                    <p><a class="button"
+                          href="https://www1.health.gov.au/internet/main/publishing.nsf/Content/diabetesRiskAssessmentTool">Diabetes
+                        Risk Assessment Tool</a></p>-->
                 </div>
-            </header>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <iframe src="https://www.youtube.com/embed/AM5MgWN5C8c" width="760" height="450" frameborder="0" allowfullscreen="allowfullscreen" style="display: block; margin: auto;" width="560"></iframe>
-            <div class="con">
-                <div class="heading-section" style="padding: 50px 0;">
-                   <h2 style="color: #339966;">About Diabetes</h2>
-                       <div class="aboutus" style="text-align: justify;">&nbsp; &nbsp;
-                        <span style="text-align: justify;">Type 2 diabetes is a progressive disease in which the body develops resistance to&nbsp;</span>
-                        <span class="--mb--rich-text" data-boldtype="0">the normal action of insulin and gradually loses the ability to produce sufficient insulin </span>
-                        <span class="--mb--rich-text" data-boldtype="0">in the pancreas. It is not known what causes type 2 diabetes, it may be related to lifestyle and genetics.</span></div>
-                       <div class="aboutus">
-                    <p><a href="https://www1.health.gov.au/internet/main/publishing.nsf/Content/diabetesRiskAssessmentTool"><span style="text-decoration: underline; color: #3366ff;"><strong><span class="--mb--rich-text" data-boldtype="0">Diabetes Risk Assessment Tool&nbsp;</span></strong></span></a><span class="--mb--rich-text" data-boldtype="0">This is a link to a test form to help the risk assessment of diabetics, it may help you assess the risk of type 2 diabetes in the next 5 years.</span></p>
-                    <a href="#"><img class="icon--rongzijine" src="css/images/icon2.png" width="100" height="100"alt="" style="display: block; margin-left: auto; margin-right: auto;"/></a>
-                    <h4 style="text-align: center;"><strong><span class="--mb--rich-text" data-boldtype="0">Exercise Treatment of Type 2 Diabetes</span></strong></h4>
-                    <p><span class="--mb--rich-text" data-boldtype="0">1. At least 3-5 exercises(30-45 minutes) per week, moderate endurance training.</span></p>
-                    <p><span class="--mb--rich-text" data-boldtype="0">2. In daily life, try to increase activity time and methods</span></p>
-                    <p><span class="--mb--rich-text" data-boldtype="0">3. Regular exercise to help stabilize blood sugar</span></p>
-                    <p><span class="--mb--rich-text" data-boldtype="0">4. The goal is to achieve a cumulative weekly calorie consumption of 1,000 calories. After adapting, try to add resistance training to increase the stability of blood sugar and blood pressure.</span></p>
-                    <a href="#"><img class="icon--rongzijine" src="css/images/icon1.png" width="100" height="100"alt=""style="display: block; margin-left: auto; margin-right: auto;"/></a>
-                    <h4 style="text-align: center;"><strong><span class="--mb--rich-text" data-boldtype="0">Medical Treatment of Type 2 Diabetes</span></strong></h4>
-                    <p><span class="--mb--rich-text" data-boldtype="0">1. Oral medicine</span></p>
-                    <p><span class="--mb--rich-text" data-boldtype="0">2. Insulin</span></p>
-                    <p><span class="--mb--rich-text" data-boldtype="0">3. Other medicine</span></p>
-                    <p><span class="--mb--rich-text" style="color: #ff0000;" data-boldtype="0">*Everyone's diabetes management methods and drug use methods are different, so let your diabetes health experts help you determine the best treatment for you.*</span></p>
+            </div>
+            <div class="field__item">
+                <div class="paragraph paragraph--type--long-form-text paragraph--view-mode--default" data-anchor="636">
+                    <p class="eyebrow">Diabetes&nbsp;</p>
+
+                    <h1>Never too late - Start strengthening your body from now on</h1>
+
+                    <h2>Some dietary suggestions</h2>
+
+                    <iframe src="https://www.youtube.com/embed/AM5MgWN5C8c" width="660" height="350"
+                            allowfullscreen="allowfullscreen" style="display: block; margin: auto;"></iframe>
+
+                </div>
+            </div>
+            <div class="field__item">
+                <div class="paragraph paragraph--type--long-form-text paragraph--view-mode--default" data-anchor="636">
+
+                    <h2>Exercise Treatment of Type 2 Diabetes</h2>
+
+                    <p>1. At least 3-5 exercises(30-45 minutes) per week, moderate endurance training.</p>
+                    <p>2. In daily life, try to increase activity time and methods.</p>
+                    <p>3. Regular exercise to help stabilize blood sugar.</p>
+                    <p>4. The goal is to achieve a cumulative weekly calorie consumption of 1,000 calories. After
+                        adapting,
+                        try to add resistance training to increase the stability of blood sugar and blood pressure.</p>
+                </div>
+            </div>
+            <div class="field__item">
+                <div class="paragraph paragraph--type--in-text-imagery paragraph--view-mode--default"
+                     data-anchor="1821">
+                    <div class="container-flex column">
+                        <div class="box-flex image">
+                            <div class="image_item width_33">
+                                <img src="images/about1.jpg"
+                                     alt="">
+                            </div>
+                            <div class="image_item width_33">
+                                <img src="images/about2.jpg"
+                                     alt="">
+                            </div>
+                            <div class="image_item width_33">
+                                <img src="images/about3.jpg"
+                                     alt="">
+                            </div>
+                        </div>
+                        <div class="box-flex details width_100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field__item">
+                <div class="paragraph paragraph--type--long-form-text paragraph--view-mode--default" data-anchor="636">
+
+                    <h2>Medical Treatment of Type 2 Diabetes</h2>
+
+                    <p>1. Oral medicine</p>
+                    <p>2. Insulin</p>
+                    <p>3. Other medicine</p>
+                </div>
+            </div>
+            <div class="field__item">
+                <div class="paragraph paragraph--type--long-form-text paragraph--view-mode--default" data-anchor="636">
+                    <p class="eyebrow">*Everyone's diabetes management methods and drug use methods are different, so
+                        let
+                        your diabetes health experts help you determine the best treatment for you.*&nbsp;</p>
                     <p>&nbsp;</p>
-                       </div>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
                 </div>
             </div>
         </div>
+        <button onclick="topFunction()" id="myBtn" title="Go to top">
+            <div class="ivu-back-top ivu-back-top-show" style="bottom: 100px; right: 30px;">
+                <div class="top">Back to Top</div>
+            </div>
+        </button>
     </div>
 </template>
 <script src="js/jquery.min.js"></script>
 <script src="js/vue.min.js"></script>
+<script src="js/iview.min.js"></script>
 <script>
     $(function () {
         new Vue({
             el: '#container',
             template: '#template1',
-            data: {
-                video: '',
-                screenHeight: 0,
-                isUp: true
-            },
-            mounted() {
-                this.init();
-            },
-            methods: {
-                init() {
-                    this.screenHeight = document.documentElement.clientHeight;
-                    console.log(this.screenHeight);
-                    this.video = 'video/video.mp4'
-                },
-                changeUp() {
-                    this.isUp = !this.isUp;
-                }
-            }
+            data: {},
+            methods: {}
         });
     });
+</script>
+
+<script>
+    //Get the button
+    var mybutton = document.getElementById("myBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 2000 || document.documentElement.scrollTop > 2000) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
 </script>
 </body>
 </html>
