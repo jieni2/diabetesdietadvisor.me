@@ -6,7 +6,7 @@
     var message = 'Password';
     while (true) {
         var password = prompt(message, '');
-        if (password === 'jhua0037') {
+        if (password === 'teamb19') {
             $.cookie('token', 'token', {path: '/'});
             break;
         } else {
