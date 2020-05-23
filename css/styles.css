@@ -1717,6 +1717,7 @@ input[type='checkbox'] {
 .footer {
 	padding-top: 5rem;
 	background-color: #113448;
+	box-sizing: border-box;
 }
 
 .footer .text-container {
