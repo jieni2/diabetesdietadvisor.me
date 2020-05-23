@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -6,6 +7,9 @@
     <link type="text/css" rel="stylesheet" href="css/fonts/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="css/iview.css">
     <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/calculator.css">
+    <link rel="stylesheet" href="css/down.animation.css">
+
     <!-- Favicon  -->
     <link rel="icon" href="images/logo2.png">
     <style>
@@ -52,11 +56,16 @@
 
         .calc-result-box > div {
             padding: 8px 0;
+            margin: auto;
+            margin-left: 400px;
+            margin-right: 400px;
+            width:350px;
+
         }
 
         .ivu-table-header th, .ivu-table-body td {
-            font-size: 24px;
-            padding: 20px !important;
+            font-size: 18px;
+            padding: 10px !important;
         }
 
         .ivu-table-header th {
@@ -77,6 +86,54 @@
             text-align: justify;
             text-justify: inter-ideograph;
         }
+
+        /*--footer start--*/
+        .footer {
+            padding-top: 5rem;
+            background-color: #113448;
+            box-sizing: border-box;
+        }
+
+        .footer .text-container {
+            margin-bottom: 2.25rem;
+        }
+
+        .footer h4 {
+            margin-bottom: 0.75rem;
+            color: #fff;
+        }
+
+        .footer p,
+        .footer ul {
+            font-size: 0.875rem;
+            line-height: 1.375rem;
+        }
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body, p1 {
+            color: #787976;
+            font: 400 1rem/1.5625rem "Open Sans", sans-serif;
+        }   /*-- footer end--*/
+
+        /*************************/
+        /*     Copyright     */
+        /*************************/
+        .copyright {
+            padding-top: 1rem;
+            padding-bottom: 0.5rem;
+            background-color: #113448;
+            text-align: center;
+        }
+
+        .copyright p,
+        .copyright a {
+            color: #dfe5ec;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -85,13 +142,15 @@
     <div class="main">
         <header id="header">
             <div class="header">
-                <a href="#"><img src="images/logo1.png" alt="" style="width: 7.0625rem;height: 2rem;"/></a>
+                <a href="index.html"><img src="images/logo1.png" alt="" style="width: 7.0625rem;height: 2rem;"/></a>
                 <ul class="nav">
                     <li><a href="index.html">HOME</a></li>
                     <li class="cur"><a href="#">CALORIE CONTROL</a></li>
                     <li><a href="recipe.html">RECIPE</a></li>
                     <li><a href="map.html">DISCOVERY</a></li>
+                    <!--remove
                     <li><a href="about.html">ABOUT DIABETES</a></li>
+                    -->
                 </ul>
             </div>
         </header>
@@ -100,100 +159,142 @@
                 <h2 style="color: #0b2e13">Measure and Recommendation</h2>
                 <h3 style="color: #0b0b0b; font-size: 18px">We aim to provide life-enhancing services and vital support to people in later life.</h3>
                 <h3 style="color: #0b0b0b; font-size: 18px"> DDA will analyze your physical condition and show you the recommended recipes for a day. </h3>
-                <Row>
-                    <i-col span="6" offset="6">
-                        <!-- <div class="" style="text-align: left;margin-top: 50px;">-->
-                        <div class="fill-container">
-                            <i-form ref="form" :model="calcData" label-position="top">
-                                <form-item label="Gender : " prop="">
-                                    <Row>
-                                        <i-col span="6">
-                                            <i-select v-model="calcData.gender">
-                                                <i-option value="male">Male</i-option>
-                                                <i-option value="female">Female</i-option>
-                                            </i-select>
-                                        </i-col>
-                                    </Row>
-                                </form-item>
-                                <form-item label="Weight : " prop="">
-                                    <Row>
-                                        <i-col span="8">
-                                            <i-input v-model="calcData.wg" placeholder=""></i-input>
-                                        </i-col>
-                                        <i-col span="8">
-                                            <i-select v-model="calcData.opt1" @on-change="handleOpt1Change">
-                                                <i-option value="kilograms">kg</i-option>
-                                                <i-option value="pounds">lb</i-option>
-                                            </i-select>
-                                        </i-col>
-                                    </Row>
-                                </form-item>
-                                <form-item label="Height : " prop="">
-                                    <Row>
-                                        <i-col span="6">
-                                            <i-select v-model="calcData.opt2" @on-change="handleOpt2Change">
-                                                <i-option value="1">1'</i-option>
-                                                <i-option value="2">2'</i-option>
-                                                <i-option value="3">3'</i-option>
-                                                <i-option value="4">4'</i-option>
-                                                <i-option value="5">5'</i-option>
-                                                <i-option value="6">6'</i-option>
-                                                <i-option value="7">7'</i-option>
-                                            </i-select>
-                                        </i-col>
-                                        <i-col span="6">
-                                            <i-select v-model="calcData.opt3" @on-change="handleOpt3Change">
-                                                <i-option value="1">1''</i-option>
-                                                <i-option value="2">2''</i-option>
-                                                <i-option value="3">3''</i-option>
-                                                <i-option value="4">4''</i-option>
-                                                <i-option value="5">5''</i-option>
-                                                <i-option value="6">6''</i-option>
-                                                <i-option value="7">7''</i-option>
-                                                <i-option value="8">8''</i-option>
-                                                <i-option value="9">9''</i-option>
-                                                <i-option value="10">10''</i-option>
-                                                <i-option value="11">11''</i-option>
-                                            </i-select>
-                                        </i-col>
-                                        <i-col span="6" style="text-align: center">inch or</i-col>
 
-                                        <i-col span="6">
-                                            <i-input v-model="calcData.ht" placeholder="">
-                                            </i-input>
-                                        </i-col>
-                                        <i-col span="6" style="text-align: center">cm</i-col>
-                                    </Row>
-                                </form-item>
-                                <form-item label="Age : " prop="">
-                                    <Row>
-                                        <i-col span="6">
-                                            <Input-number :value.sync="calcData.age" min="0" max="120"></Input-number>
-                                        </i-col>
-                                    </Row>
-                                </form-item>
-                                <form-item label="Physical Activity Level : " prop="">
-                                    <radio-group v-model="calcData.level" @on-change="handleLevelChange" vertical>
-                                        <radio class="radio" :label="1">Sedentary</radio>
-                                        <p style="color: #ff051b; font-size:15px;">little or no exercise</p>
-                                        <radio class="radio" :label="2">Light Active</radio>
-                                        <p style="color: #ff051b; font-size:15px;">light exercise 1-3 days per week</p>
-                                        <radio class="radio" :label="3">Moderately Active.</radio>
-                                        <p style="color: #ff051b; font-size:15px;">moderate exercise 3-5 days per week</p>
-                                        <radio class="radio" :label="4">Very Active.</radio>
-                                        <p style="color: #ff051b; font-size:15px;">hard exercise 6-7 days per week</p>
-                                    </radio-group>
-                                </form-item>
-                                <form-item>
-                                    <i-button id="cal" type="primary" class="btn submit_btn" @click="calculate">Calculate
-                                    </i-button>
-                                </form-item>
-                            </i-form>
+                <section id="zubaer-calorie-calculator-2" class="widget card widget_zubaer-calorie-calculator amr_widget" style="width: 450px;height: 425px; left:400px"><h3 class="widget-title card-header">calcount Calorie Calculator </h3>
+
+
+
+
+
+                    <div class="calcalpro_wrapper calorie_calculator_general">
+
+
+                        <div class="calcalpro_body_wrapper">
+
+
+
+                            <div id="tabs-2_2" class=" calcal_tab">
+
+                                <div class="calorie_calculator_metric_show_errors"></div>
+
+                                <form action="" method="post" class="calorie_calculator_form_metric_units calorie_calculator_form" name="calorie_calculator_form_metric_units">
+
+                                    <input type="hidden" name="unit" value="metric_unit">
+                                    <input type="hidden" name="template" value="general">
+
+                                    <div class="full_width calcalpro_tooltip">
+                                        <span class="calcalpro_tooltiptext">Please enter your age</span>
+                                        <!-- <label for="calorie_calculator_age"></label> -->
+                                        <!--  <Input-number :value.sync="calcData.age" min="0" max="120"></Input-number> -->
+                                        <input type="number" min="60" max="120" step="any" v-model="calcData.age" class="calorie_calculator_age" placeholder="Age (eg. 65 Years)" value="">
+                                    </div>	<div class="full_width">
+
+
+                                    <div class="gender_field_wrapper full_width calcalpro_tooltip">
+                                        <span class="calcalpro_tooltiptext">Please enter your gender</span>
+                                        <!-- dropDown change to checkbox
+                                        <input type="radio" name="calorie_calculator_gender" value="male" id="calcData.gender" class="calorie_calculator_male" checked="">
+                                        <label for="calcData.gender">Male</label>
+                                        <label for="calcData.gender">Female</label>
+                                        -->
+                                        <radio-group v-model="calcData.gender" @on-change="handleLevelChange" horizontal>
+                                            <radio class="radio" :label="1">Female</radio>
+                                            <radio class="radio" :label="2">Male</radio>
+                                        </radio-group>
+
+                                    </div>
+
+                                </div>
+
+                                    <div class="full_width calcalpro_tooltip">
+                                        <span class="calcalpro_tooltiptext">Please enter your height</span>
+                                        <!-- <label for="calorie_calculator_height"></label> -->
+                                        <i-input type="number" min="0" step="any" v-model="calcData.ht" class="calorie_calculator_height" placeholder="Height (eg. 180 Centimeters)"></i-input>
+                                    </div>
+
+
+                                    <div class="full_width calcalpro_tooltip">
+                                        <span class="calcalpro_tooltiptext">Please enter your weight (Kg)</span>
+                                        <!-- <label for="calorie_calculator_weight"></label> -->
+                                        <input type="number" min="0" step="any" name="calorie_calculator_weight" v-model="calcData.wg" class="calorie_calculator_weight" placeholder="Weight (eg. 68 Kilograms)">
+                                    </div>
+
+                                    <div class="full_width calcalpro_tooltip">
+                                        <span class="calcalpro_tooltiptext">Please select an activity level</span>
+                                        <!-- <label for="calorie_calculator_activity"> </label>	 -->
+                                        <!-- <div class="calcalpro-custom-select-wrapper">
+                                             <radio-group v-model="calcData.level" @on-change="handleLevelChange" vertical>
+                                                 <radio class="radio" :label="1">Sedentary</radio>
+                                                 <p style="color: #ff051b; font-size:15px;">little or no exercise</p>
+                                                 <radio class="radio" :label="2">Light Active</radio>
+                                                 <p style="color: #ff051b; font-size:15px;">light exercise 1-3 days per week</p>
+                                                 <radio class="radio" :label="3">Moderately Active.</radio>
+                                                 <p style="color: #ff051b; font-size:15px;">moderate exercise 3-5 days per week</p>
+                                                 <radio class="radio" :label="4">Very Active.</radio>
+                                                 <p style="color: #ff051b; font-size:15px;">hard exercise 6-7 days per week</p>
+                                             </radio-group>-->
+                                        <i-select v-model="calcData.level" placeholder="Your Activity Level" >
+                                            <i-option value="1">Sedentary - little or no exercise</i-option>
+                                            <i-option value="2">Lightly Active - light exercise 1-3 days per week</i-option>
+                                            <i-option value="3">Moderately Active - moderate exercise 3-5 days per week</i-option>
+                                            <i-option value="4">Very Active - hard exercise 6-7 days per week</i-option>
+                                        </i-select>
+
+
+                                        <!--<div class="calcalpro-custom-select calorie_calculator_activity">
+                                           <span class="calcalpro-custom-select-trigger">Your Activity Level</span>
+                                           <div class="calcalpro-custom-options">
+                                              <span class="calcalpro-custom-option undefined" data-value="1">Basal Metabolic Rate (BMR)</span>
+                                                <span class="calcalpro-custom-option undefined" lable="1">Sedentary - little or no exercise</span>
+                                                <span class="calcalpro-custom-option undefined"lable="2">Lightly Active - light exercise 1-3 days per week</span>
+                                                <span class="calcalpro-custom-option undefined" lable="3">Moderately Active - moderate exercise 3-5 days per week</span>
+                                                <span class="calcalpro-custom-option undefined" lable="4">Very Active - hard exercise 6-7 days per week</span>
+                                                <span class="calcalpro-custom-option undefined" data-value="1.9">Extra Active - very hard exercise/sports or physical job</span>
+                                            </div>-->
+
+                                    </div>
+
+
+
+
+                                    <input type="hidden" id="cal" name="calorie_calculator_form_nonce_field_action" ><input type="hidden" name="_wp_http_referer" value="/calorie-calculator/">
+                                    <div >
+
+                                        <!--<input type="submit" class="btn btn-block btn-default calcalpro_submit" value="Calculate" @click="calculate">-->
+                                        <i-button id="cal" type="primary" class="btn submit_btn" @click="calculate">Calculate
+                                        </i-button>
+
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+
+
+
+                            <div class="calorie_calculator_result" style="display: none;"></div>
+
+
                         </div>
+                    </div>
 
+
+                </section>
+
+
+
+
+
+                <div v-if="calcResultShow">
+                    <div class="sidenav">
+                        <a href="#result1" class="btn btn-warning my-2" style="background-color: #0f6674; border-color: #0f6674;">BMI&BMR</a>
+                        <a href="#result2" class="btn btn-warning my-2" style="background-color: #0f6674; border-color: #0f6674;">Meals</a>
+                    </div>
                     </i-col>
-                    <i-col span="5" offset="1">
-                        <div class="form calc-result-box">
+                    <i-col span="5" offset="1" id="result1">
+                        <div class="form calc-result-box"  >
+
                             <div class="bmi-calc" style="text-align: center;">
                                 <h3> Your BMI is<h4> {{calcResult.output}}</h4></h3>
                             </div>
@@ -203,8 +304,9 @@
                             <div class="bmi-calc" style="text-align: center;">
                                 <img style="justify-content:center; " src="images/BMI.png" height="260" width=360"/>
                             </div>
+
                             <div class="bmi-calc">
-                                <h3> Your BMR is<h4> {{calcResult.bmr}}</h4></h3>
+                                <p5> Your BMR is<p6> {{calcResult.bmr}}</p6></p5>
                                 <p> Basal Metabolic Rate is the number of calories required to keep your body functioning at rest. BMR is also known as your body's metabolism; therefore, any increase to your metabolic weight, such as exercise, will increase your BMR. To get your BMR, simply input your height, gender, age and weight below.</p>
                             </div>
                             <div class="bmi-calc">
@@ -225,31 +327,45 @@
                                 <p6> {{calcResult.dinner}}</p6>
                             </div>
                         </div>
-                    </i-col>
-                </Row>
-                <div v-if="calcResultShow">
-                    <div class="bmi-calc" style="text-align: center;">
-                        <img  id="pagedown" style="justify-content:center; "src="images/arrows.png" height="40"
-                              width="40"/>
-                    </div>
 
+
+
+                    </i-col>
+
+
+                    <div class="bmi-calc" style="text-align: center;">
+
+                        <!-- <img  id="pagedown" style="justify-content:center; "src="images/arrows.png" height="40"
+                               width="40"/>-->
+                    </div>
                     <div>
-                        <blockquote>
-                            <h4><span class="--mb--rich-text"
-                                      style="background-color: #CEFFFF;color: #376BFB;font-size: 32px;padding: 4px 2px;"
-                                      data-boldtype="0">
-                        Depending on your calorie intake, </span></h4>
-                        </blockquote>
-                        <blockquote style="margin-top: 30px;">
-                            <h4><span class="--mb--rich-text"
-                                      style="background-color: #CEFFFF;color: #376BFB;font-size: 32px;padding: 4px 2px; "
-                                      data-boldtype="0">
-                        we recommend these meals! </span></h4>
-                        </blockquote>
-                        <Row style="text-align: center;margin-top: 30px;">
-                            <i-col span="16" offset="4">
+                        <!--
+                    <blockquote>
+                        <h4><span class="--mb--rich-text"
+                                  style="background-color: #CEFFFF;color: #376BFB;font-size: 32px;padding: 4px 2px;"
+                                  data-boldtype="0">
+                    Depending on your calorie intake, </span></h4>
+                    </blockquote>
+                    <blockquote style="margin-top: 30px;">
+                        <h4><span class="--mb--rich-text"
+                                  style="background-color: #CEFFFF;color: #376BFB;font-size: 32px;padding: 4px 2px; "
+                                  data-boldtype="0">
+                    we recommend these meals! </span></h4>
+                    </blockquote>-->
+                        <Row style="text-align: center;margin-top: 30px;" >
+                            <i-col span="16" offset="4" id="result2">
+                                <blockquote>
+                                    <h4><span class="--mb--rich-text"
+                                              style="background-color: #CEFFFF;color: #376BFB;font-size: 32px;padding: 4px 2px;"
+                                              data-boldtype="0">Depending on your calorie intake, </span></h4>
+                                </blockquote>
+                                <blockquote style="margin-top: 30px;">
+                                    <h4><span class="--mb--rich-text"
+                                              style="background-color: #CEFFFF;color: #376BFB;font-size: 32px;padding: 4px 2px; "
+                                              data-boldtype="0">we recommend these meals! </span></h4>
+                                </blockquote>
                                 <i-table :content="self" :columns="columns3" :data="data3"
-                                         :no-data-text="noDataText"></i-table>
+                                         :no-data-text="noDataText" ></i-table>
                             </i-col>
                         </Row>
                         <!--<Row style="text-align: center;margin-top: 30px;" v-show="calcResult.output >= 25">
@@ -274,7 +390,57 @@
                 </div>
             </div>
         </div>
+        <!-- Footer -->
+        <div class="footer">
+            <div class="container" style="padding: 20px">
+                <div class="row" style="display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: 15px;margin-left: 40px;">
+                    <div class="col-md-6" style="position: relative;width: 100%;padding-right: 15px;padding-left: 15px;">
+                        <div class="text-container about" style="width: 330px; height:148px; margin-bottom: 2.25rem;">
+                            <h4>Our Story</h4>
+                            <p1 class="white" style="color:#dfe5ec; text-align:left;">Diabetes Diet Advisor(DDA) exists to support the diverse needs of older Australians and specialise in supporting seniors from culturally diverse backgrounds. DDA strives every day to improve the lives and wellbeing of those we support.</p1>
+                        </div> <!-- end of text-container -->
+                    </div> <!-- end of col -->
+
+                    <div class="col-md-2">
+                        <div class="text-container">
+                            <h4>Links</h4>
+                            <ul class="list-unstyled li-space-lg white" >
+                                <li>
+                                    <a class="white"  style="color: #f9fafc" href="index.html">Home</a>
+                                </li>
+                                <li>
+                                    <a class="white" style="color: #f9fafc" href="#">Calories Control</a>
+                                </li>
+                                <li>
+                                    <a class="white" style="color: #f9fafc" href="recipe.html">Recipe</a>
+                                </li>
+                                <li>
+                                    <a class="white" style="color: #f9fafc" href="map.html">Discovery</a>
+                                </li>
+
+                            </ul>
+                        </div> <!-- end of text-container -->
+                    </div> <!-- end of col -->
+                </div> <!-- end of container -->
+            </div> <!-- end of footer -->
+        </div><!-- end of footer -->
+
+        <!-- Copyright -->
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="p-small">Copyright © 2020 by DiabeteDietAdvisor by ByteConnect. All Rights Reserved</a></p>
+                    </div> <!-- end of col -->
+                </div> <!-- enf of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of copyright -->
+        <!-- end of copyright -->
     </div>
+
+
+
+
 </template>
 <script src="js/jquery.min.js"></script>
 <script src="js/vue.min.js"></script>
@@ -293,13 +459,14 @@
                 server: 'https://diabetes-20200426.azurewebsites.net',
                 calcData: {
                     wg: '',
+                    /*--
                     opt1: 'kilograms',
                     opt2: '5',
-                    opt3: '10',
+                    opt3: '10',--*/
                     ht: 178,
-                    age: 10,
-                    gender: 'male',
-                    level: 2
+                    age: 60,
+                    gender: 2,/*gender:male = label 2*/
+                    level: 1
                 },
                 calcResultShow: false,
                 calcResult: {
@@ -370,7 +537,7 @@
                 },
                 handleOpt1Change(value) {
                     if (value === 'pounds') {
-                        this.calcData.wg = Math.round((this.calcData.wg * 2.2) * 100) / 100;
+                        this.calcData.wg = Math.round((this.calcData.wg *2.2) * 100) / 100;
                     } else {
                         this.calcData.wg = Math.round(this.calcData.wg / 2.2);
                     }
@@ -413,7 +580,7 @@
 
                     if (weightunits === "pounds") weight /= 2.20462;
 
-                    var level = this.calcData.level;
+                    var level = Number(this.calcData.level);
                     var bodysize = "Normal";
                     var perkilogram1 = 25;
                     var perkilogram2 = 30;
@@ -496,8 +663,8 @@
 
                     let age = Number(this.calcData.age);
 
-                    if (this.calcData.gender === 'male') {
-                        this.calcResult.bmr = (66.47 + (13.75 + weight) + (5.003 * height) - (6.755 * age)).toFixed(2);
+                    if (this.calcData.gender === 1) {
+                        this.calcResult.bmr = -(66.47 + (13.75 + weight) + (5.003 * height) - (6.755 * age)).toFixed(2);
                     } else {
                         this.calcResult.bmr = (655.1 + (9.563 + weight) + (1.85 * height) - (4.676 * age)).toFixed(2);
                     }
@@ -532,5 +699,6 @@
         });
     });
 </script>
+
 </body>
 </html>

@@ -8,32 +8,88 @@
     <link type="text/css" rel="stylesheet" href="css/fonts/iconfont.css"/>
     <link type="text/css" rel="stylesheet" href="css/style.css"/>
     <link type="text/css" rel="stylesheet" href="css/map.css"/>
+    <link rel="stylesheet" href="css/calculator.css">
+
     <!-- Favicon  -->
     <link rel="icon" href="images/logo2.png">
 
 </head>
+<style>
+    /*--footer start--*/
+    .footer {
+        padding-top: 5rem;
+        background-color: #113448;
+        box-sizing: border-box;
+    }
+
+    .footer .text-container {
+        margin-bottom: 2.25rem;
+    }
+
+    .footer h4 {
+        margin-bottom: 0.75rem;
+        color: #fff;
+    }
+
+    .footer p,
+    .footer ul {
+        font-size: 0.875rem;
+        line-height: 1.375rem;
+    }
+    body,
+    html {
+        width: 100%;
+        height: 100%;
+    }
+
+    body, p1 {
+        color: #787976;
+        font: 400 1rem/1.5625rem "Open Sans", sans-serif;
+    }   /*-- footer end--*/
+
+    /*************************/
+    /*     Copyright     */
+    /*************************/
+    .copyright {
+        padding-top: 1rem;
+        padding-bottom: 0.5rem;
+        background-color: #113448;
+        text-align: center;
+    }
+
+    .copyright p,
+    .copyright a {
+        color: #dfe5ec;
+        text-decoration: none;
+    }
+</style>
+
 <body>
 <div id="container"></div>
 <template id="template1">
     <div class="main">
         <header id="header">
             <div class="header">
-                <a href="#"><img src="images/logo1.png" alt="" style="width: 7.0625rem;height: 2rem;"/></a>
+                <a href="index.html"><img src="images/logo1.png" alt="" style="width: 7.0625rem;height: 2rem;"/></a>
                 <ul class="nav">
                     <li><a href="index.html">HOME</a></li>
                     <li><a href="calc.html">CALORIE CONTROL</a></li>
                     <li><a href="recipe.html">RECIPE</a></li>
                     <li class="cur"><a href="#">DISCOVERY</a></li>
+                    <!--
                     <li><a href="about.html">ABOUT DIABETES</a></li>
+                    -->
                 </ul>
             </div>
         </header>
+
+
         <div class="con">
             <div class="heading-section" style="padding: 50px 0;">
                 <h2>Find Your Nearby Supermarkets</h2>
                 <div class="news">
                     <div class="clinic-search-label">
-                        <label>Find your nearby supermarkets</label></div>
+                        <label>Enter a suburb name to search</label></div>
                 </div>
                 <div id="locationField">
                     <input id="autocomplete" placeholder="Enter a suburb to search" type="text"/>
@@ -78,6 +134,54 @@
                 </div>
             </div>
         </div>
+
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="container" style="padding: 20px">
+                <div class="row" style="display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: 15px;margin-left: 40px;">
+                    <div class="col-md-6" style="position: relative;width: 100%;padding-right: 15px;padding-left: 15px;">
+                        <div class="text-container about" style="width: 330px; height:148px; margin-bottom: 2.25rem;">
+                            <h4>Our Story</h4>
+                            <p1 class="white" style="color:#dfe5ec; text-align:left;">Diabetes Diet Advisor(DDA) exists to support the diverse needs of older Australians and specialise in supporting seniors from culturally diverse backgrounds. DDA strives every day to improve the lives and wellbeing of those we support.</p1>
+                        </div> <!-- end of text-container -->
+                    </div> <!-- end of col -->
+
+                    <div class="col-md-2">
+                        <div class="text-container">
+                            <h4>Links</h4>
+                            <ul class="list-unstyled li-space-lg white" >
+                                <li>
+                                    <a class="white"  style="color: #f9fafc" href="index.html">Home</a>
+                                </li>
+                                <li>
+                                    <a class="white" style="color: #f9fafc" href="calc.html">Calories Control</a>
+                                </li>
+                                <li>
+                                    <a class="white" style="color: #f9fafc" href="recipe.html">Recipe</a>
+                                </li>
+                                <li>
+                                    <a class="white" style="color: #f9fafc" href="#">Discovery</a>
+                                </li>
+
+                            </ul>
+                        </div> <!-- end of text-container -->
+                    </div> <!-- end of col -->
+                </div> <!-- end of container -->
+            </div> <!-- end of footer -->
+        </div><!-- end of footer -->
+
+        <!-- Copyright -->
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="p-small">Copyright © 2020 by DiabeteDietAdvisor by ByteConnect. All Rights Reserved</a></p>
+                    </div> <!-- end of col -->
+                </div> <!-- enf of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of copyright -->
+        <!-- end of copyright -->
     </div>
 </template>
 
