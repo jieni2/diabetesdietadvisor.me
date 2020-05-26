@@ -61,6 +61,11 @@
             margin-bottom: 2.25rem;
         }
 
+        .footer .text-container.about {
+            margin-right: 5rem;
+        }
+
+
         .footer h4 {
             margin-bottom: 0.75rem;
             color: #fff;
@@ -70,6 +75,7 @@
         .footer ul {
             font-size: 0.875rem;
             line-height: 1.375rem;
+            font: 400 1rem/1.5625rem "Open Sans", sans-serif;
         }
         body,
         html {
@@ -79,15 +85,15 @@
 
         body, p1 {
             color: #787976;
-            font: 400 1rem/1.5625rem "Open Sans", sans-serif;
         }   /*-- footer end--*/
 
         /*************************/
         /*     Copyright     */
         /*************************/
         .copyright {
+            /***
             padding-top: 1rem;
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.5rem;*/
             background-color: #113448;
             text-align: center;
         }
@@ -96,7 +102,11 @@
         .copyright a {
             color: #dfe5ec;
             text-decoration: none;
+            font: 400 1rem/1.5625rem "Open Sans", sans-serif;
+            font-size: 0.875rem
+
         }
+
     </style>
 </head>
 <body>
@@ -403,53 +413,55 @@
         <Back-top :height="100" :bottom="100" ref="backTop" :duration="500">
             <div class="top">Back to Top</div>
         </Back-top>
-        <!-- Footer -->
-        <div class="footer">
-            <div class="container" style="padding: 20px">
-                <div class="row" style="display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: 15px;margin-left: 40px;">
-                    <div class="col-md-6" style="position: relative;width: 100%;padding-right: 15px;padding-left: 15px;">
-                        <div class="text-container about" style="width: 330px; height:100px; margin-bottom: 2.25rem;">
-                            <h4>Our Story</h4>
-                            <p1 class="white" style="color:#dfe5ec; text-align:left;">Diabetes Diet Advisor(DDA) helps to support the food requirements of type 2 elderly diabetic patients from various backgrounds of regional Australia. We strive every day to make human lives happier and healthier.</p1>
-                        </div> <!-- end of text-container -->
-                    </div> <!-- end of col -->
 
-                    <div class="col-md-2">
-                        <div class="text-container">
-                            <h4>Links</h4>
-                            <ul class="list-unstyled li-space-lg white" >
-                                <li>
-                                    <a class="white"  style="color: #f9fafc" href="index.html">Home</a>
-                                </li>
-                                <li>
-                                    <a class="white" style="color: #f9fafc" href="calc.html">Calories Control</a>
-                                </li>
-                                <li>
-                                    <a class="white" style="color: #f9fafc" href="#">Recipe</a>
-                                </li>
-                                <li>
-                                    <a class="white" style="color: #f9fafc" href="map.html">Discovery</a>
-                                </li>
+        <div >
+            <!-- Footer -->
+            <div class="footer" style="height:60%">
+                <div class="container" style="padding: 20px">
+                    <div class="row" style="display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-left: 10px;">
+                        <div class="col-md-6" style="position: relative;width: 100%;padding-right: 15px;padding-left: 15px;">
+                            <div class="text-container about" style="width: 490px; height:148px; margin-bottom: 2.25rem;">
+                                <h4>Our Story</h4>
+                                <p1 class="white" style="color:#dfe5ec; text-align:left;font-size: 1rem">Diabetes Diet Advisor(DDA) helps to support the food requirements of type 2 elderly diabetic patients from various backgrounds of regional Australia. We strive every day to make human lives happier and healthier.</p1>
+                            </div> <!-- end of text-container -->
+                        </div> <!-- end of col -->
 
-                            </ul>
-                        </div> <!-- end of text-container -->
-                    </div> <!-- end of col -->
+                        <div class="col-md-2" style="margin-left: 70px">
+                            <div class="text-container">
+                                <h4>Links</h4>
+                                <ul class="list-unstyled li-space-lg white" >
+                                    <li>
+                                        <a class="white"  style="color: #f9fafc;font-size: 0.875rem;text-decoration:underline " href="index.html">Home</a>
+                                    </li>
+                                    <li>
+                                        <a class="white" style="color: #f9fafc;font-size: 0.875rem;text-decoration:underline" href="calc.html">Calories Control</a>
+                                    </li>
+                                    <li>
+                                        <a class="white" style="color: #f9fafc;font-size: 0.875rem;text-decoration:underline" href="recipe.html">Recipe</a>
+                                    </li>
+                                    <li>
+                                        <a class="white" style="color: #f9fafc;font-size: 0.875rem;text-decoration:underline" href="#">Discovery</a>
+                                    </li>
+
+                                </ul>
+                            </div> <!-- end of text-container -->
+                        </div> <!-- end of col -->
+                    </div> <!-- end of container -->
+                </div> <!-- end of footer -->
+            </div><!-- end of footer -->
+
+            <!-- Copyright -->
+            <div class="copyright" style="height:60%">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p class="p-small">Copyright © 2020 by DiabeteDietAdvisor by ByteConnect. All Rights Reserved</a></p>
+                        </div> <!-- end of col -->
+                    </div> <!-- enf of row -->
                 </div> <!-- end of container -->
-            </div> <!-- end of footer -->
-        </div><!-- end of footer -->
-
-        <!-- Copyright -->
-        <div class="copyright">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p class="p-small">Copyright © 2020 by DiabeteDietAdvisor by ByteConnect. All Rights Reserved</a></p>
-                    </div> <!-- end of col -->
-                </div> <!-- enf of row -->
-            </div> <!-- end of container -->
-        </div> <!-- end of copyright -->
-        <!-- end of copyright -->
-    </div>
+            </div> <!-- end of copyright -->
+            <!-- end of copyright -->
+        </div>
 </template>
 <script src="js/jquery.min.js"></script>
 <script src="js/vue.min.js"></script>
@@ -579,7 +591,7 @@
                     var params = {
                         made: this.calcData.made.toLowerCase(),
                         favorites: this.calcData.favorites,
-                        preferences: this.calcData.preferences,
+                        //preferences: this.calcData.preferences,
                         cuisine: this.calcData.cuisine,
                         calorie: 0
                     };
